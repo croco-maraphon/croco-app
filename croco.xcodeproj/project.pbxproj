@@ -26,6 +26,8 @@
 		1741140929ED68D9008C8EF1 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */; };
 		1741140C29ED6907008C8EF1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140A29ED6907008C8EF1 /* ResultsViewController.swift */; };
 		1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140B29ED6907008C8EF1 /* ResultsViewController.xib */; };
+		7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234329EDC87D00479134 /* UIColor + extension.swift */; };
+		7ED08F2B29EDAA340003AE4D /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED08F2A29EDAA340003AE4D /* TeamsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		1741140A29ED6907008C8EF1 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		1741140B29ED6907008C8EF1 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
+		7EC3234329EDC87D00479134 /* UIColor + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + extension.swift"; sourceTree = "<group>"; };
+		7ED08F2A29EDAA340003AE4D /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 		174113D629ED2F35008C8EF1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7EC3234529EDC88000479134 /* Extensions */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				174113FE29ED684E008C8EF1 /* TeamsViewController.swift */,
+				7ED08F2A29EDAA340003AE4D /* TeamsView.swift */,
 				174113FF29ED684E008C8EF1 /* TeamsViewController.xib */,
 			);
 			path = Teams;
@@ -175,6 +181,14 @@
 				1741140B29ED6907008C8EF1 /* ResultsViewController.xib */,
 			);
 			path = Results;
+			sourceTree = "<group>";
+		};
+		7EC3234529EDC88000479134 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3234329EDC87D00479134 /* UIColor + extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +280,9 @@
 				1741140029ED684E008C8EF1 /* TeamsViewController.swift in Sources */,
 				1741140829ED68D9008C8EF1 /* CategoriesViewController.swift in Sources */,
 				174113C229ED2E10008C8EF1 /* ViewController.swift in Sources */,
+				7ED08F2B29EDAA340003AE4D /* TeamsView.swift in Sources */,
 				174113BE29ED2E10008C8EF1 /* AppDelegate.swift in Sources */,
+				7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */,
 				174113C029ED2E10008C8EF1 /* SceneDelegate.swift in Sources */,
 				1741140429ED688D008C8EF1 /* MainViewController.swift in Sources */,
 			);
