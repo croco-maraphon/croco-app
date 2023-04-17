@@ -18,10 +18,10 @@ class TeamsViewController: UIViewController {
         setNavigationBar()
         setViews()
         setConstraints()
-        
-        
     }
-    
+}
+
+extension TeamsViewController {
     private func setViews() {
         view.addSubview(teamsView.backgroundImage)
         
