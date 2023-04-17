@@ -26,6 +26,7 @@
 		1741140929ED68D9008C8EF1 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */; };
 		1741140C29ED6907008C8EF1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140A29ED6907008C8EF1 /* ResultsViewController.swift */; };
 		1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140B29ED6907008C8EF1 /* ResultsViewController.xib */; };
+		E4EFCAD929EDD51C005B437D /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EFCAD829EDD51C005B437D /* CategoryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		1741140A29ED6907008C8EF1 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		1741140B29ED6907008C8EF1 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
+		E4EFCAD829EDD51C005B437D /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		174113E629ED5466008C8EF1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				E4EFCAD729EDD4FE005B437D /* Models */,
 				1741140629ED68D9008C8EF1 /* CategoriesViewController.swift */,
 				1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */,
 			);
@@ -175,6 +178,14 @@
 				1741140B29ED6907008C8EF1 /* ResultsViewController.xib */,
 			);
 			path = Results;
+			sourceTree = "<group>";
+		};
+		E4EFCAD729EDD4FE005B437D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E4EFCAD829EDD51C005B437D /* CategoryModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 				1741140029ED684E008C8EF1 /* TeamsViewController.swift in Sources */,
 				1741140829ED68D9008C8EF1 /* CategoriesViewController.swift in Sources */,
 				174113C229ED2E10008C8EF1 /* ViewController.swift in Sources */,
+				E4EFCAD929EDD51C005B437D /* CategoryModel.swift in Sources */,
 				174113BE29ED2E10008C8EF1 /* AppDelegate.swift in Sources */,
 				174113C029ED2E10008C8EF1 /* SceneDelegate.swift in Sources */,
 				1741140429ED688D008C8EF1 /* MainViewController.swift in Sources */,
