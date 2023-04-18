@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         setRulesButton()
         setTeamsButton()
         setGameButton()
+        clearBackButtonTitle()
     }
     
     public func setBackground() {
@@ -129,5 +130,13 @@ struct ContentMainViewController_Previews: PreviewProvider {
             .previewInterfaceOrientation(.portrait)
             .edgesIgnoringSafeArea(.all)
             .colorScheme(.light) // or .dark
+    }
+}
+
+extension MainViewController {
+    private func clearBackButtonTitle() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: ""
+        )
     }
 }
