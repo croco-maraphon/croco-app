@@ -11,18 +11,21 @@ final class StatisticService: StatisticServiceProtocol {
     private let userDefaults = UserDefaults.standard
 
     public func getPointsFrom(team: String) -> Int {
-        userDefaults.integer(forKey: team)
+        userDefaults.integer(forKey: "croco \(team)")
     }
 
     public func setPointsTo(team: String, points: Int) {
-        userDefaults.set(points, forKey: team)
+        userDefaults.set(points, forKey: "croco \(team)")
     }
 
-    public func restorePoints() {
-        let dictionary = userDefaults.dictionaryRepresentation()
+    public func restore() {
+        let keys = userDefaults.dictionaryRepresentation().keys
 
-        dictionary.keys.forEach {
-            userDefaults.removeObject(forKey: $0)
+        for key in keys {
+            if key.hasPrefix("croco ") {
+                userDefaults.removeObject(forKey: key)
+            }
         }
+        userDefaults.synchronize()
     }
 }
