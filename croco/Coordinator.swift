@@ -38,7 +38,7 @@ enum Screens {
         case .Game:
             return GameViewController()
         case .Results:
-            return ResultsViewController()
+            return GameResultViewController()
         }
     }
 }
@@ -47,6 +47,7 @@ class MainCoordinator: Coordinator {
     public static let shared = MainCoordinator()
 
     var navigationController: UINavigationController = UINavigationController()
+    
     
     func start() {
         let vc = MainViewController()
