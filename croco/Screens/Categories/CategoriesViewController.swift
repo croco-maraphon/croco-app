@@ -32,13 +32,12 @@ class CategoriesViewController: UIViewController {
     }()
 
     private var categoriesFactory: CategoriesFactory?
-    private var presenter: CategoriesPresenter?
+    private var presenter: CategoriesPresenter = CategoriesPresenter.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         categoriesFactory = CategoriesFactory()
-        presenter = CategoriesPresenter()
 
         setBackground()
         setHeader()
@@ -46,8 +45,6 @@ class CategoriesViewController: UIViewController {
     }
 
     @objc func navigateToGame() {
-        guard let presenter else { return }
-
         if presenter.canStartGame() {
             MainCoordinator.shared.push(.Game)
         }
@@ -59,13 +56,13 @@ class CategoriesViewController: UIViewController {
         if let checkBox = animalButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
 
-            presenter?.removeCategory(
+            presenter.removeCategory(
                 category: categoriesFactory.categories[0]
             )
         } else {
             addCheckBox(to: animalButton)
 
-            presenter?.addCategory(
+            presenter.addCategory(
                 category: categoriesFactory.categories[0]
             )
         }
@@ -77,13 +74,13 @@ class CategoriesViewController: UIViewController {
         if let checkBox = foodButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
 
-            presenter?.removeCategory(
+            presenter.removeCategory(
                 category: categoriesFactory.categories[1]
             )
         } else {
             addCheckBox(to: foodButton)
 
-            presenter?.addCategory(
+            presenter.addCategory(
                 category: categoriesFactory.categories[1]
             )
         }
@@ -95,13 +92,13 @@ class CategoriesViewController: UIViewController {
         if let checkBox = personButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
 
-            presenter?.removeCategory(
+            presenter.removeCategory(
                 category: categoriesFactory.categories[2]
             )
         } else {
             addCheckBox(to: personButton)
 
-            presenter?.addCategory(
+            presenter.addCategory(
                 category: categoriesFactory.categories[2]
             )
         }
@@ -113,13 +110,13 @@ class CategoriesViewController: UIViewController {
         if let checkBox = hobbyButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
 
-            presenter?.removeCategory(
+            presenter.removeCategory(
                 category: categoriesFactory.categories[3]
             )
         } else {
             addCheckBox(to: hobbyButton)
 
-            presenter?.addCategory(
+            presenter.addCategory(
                 category: categoriesFactory.categories[3]
             )
         }
@@ -128,7 +125,6 @@ class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController {
     public func setBackground() {
-        guard let presenter else { return }
 
         let imageView = UIImageView()
         imageView.image = UIImage(
@@ -158,7 +154,7 @@ extension CategoriesViewController {
 extension CategoriesViewController {
     public func setHeader() {
         let label = UILabel()
-        label.text = presenter?.categoryViewModel.headerLabel
+        label.text = presenter.categoryViewModel.headerLabel
         label.font = UIFont.systemFont(
             ofSize: 32,
             weight: .bold
@@ -203,8 +199,7 @@ extension CategoriesViewController {
 
 extension CategoriesViewController {
     private func setButtons() {
-        guard let categoriesFactory,
-              let presenter else {
+        guard let categoriesFactory else {
             return
         }
         setConfigurationToButton(
