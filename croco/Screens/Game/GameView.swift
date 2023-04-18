@@ -1,0 +1,166 @@
+//
+//  GameView.swift
+//  croco
+//
+//  Created by Ilyas Tyumenev on 18.04.2023.
+//
+
+import UIKit
+import SnapKit
+import SwiftUI
+
+class GameView: UIView {
+    
+    // MARK: - Private Properties
+    
+    private let backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "background")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    private let crocoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "crocoGame")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    let timerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "00:59"
+        label.font = UIFont.italicSystemFont(ofSize: 48)
+        label.textColor = .black
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private let wordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Картошка"
+        label.font = UIFont.italicSystemFont(ofSize: 48)
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let commentLabel: UILabel = {
+        let label = UILabel()
+        label.text = "объясни с помощью жестов"
+        label.font = UIFont.italicSystemFont(ofSize: 20)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let correctButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Правильно", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(hex: "#74A730")
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    let wrongButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Нарушил правила", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(hex: "#E64646")
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    let mainButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Сбросить", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(hex: "#8C9196")
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    // MARK: - Initializers
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addViews()
+        addConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Methods
+    private func addViews() {
+        addSubview(backgroundImageView)
+        addSubview(crocoImageView)
+        addSubview(timerLabel)
+        addSubview(wordLabel)
+        addSubview(commentLabel)
+        addSubview(correctButton)
+        addSubview(wrongButton)
+        addSubview(mainButton)
+    }
+    
+    private func addConstraints() {
+        backgroundImageView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        crocoImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(36)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(139)
+        }
+        
+        timerLabel.snp.makeConstraints { make in
+            make.top.equalTo(crocoImageView.snp.bottom).offset(57)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(324)
+            make.height.equalTo(37)
+        }
+        
+        wordLabel.snp.makeConstraints { make in
+            make.top.equalTo(timerLabel.snp.bottom).offset(100)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(247)
+            make.height.equalTo(48)
+        }
+        
+        commentLabel.snp.makeConstraints { make in
+            make.top.equalTo(wordLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(197)
+            make.height.equalTo(48)
+        }
+        
+        correctButton.snp.makeConstraints { make in
+            make.top.equalTo(commentLabel.snp.bottom).offset(106)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(351)
+            make.height.equalTo(60)
+        }
+        
+        wrongButton.snp.makeConstraints { make in
+            make.top.equalTo(correctButton.snp.bottom).offset(11)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(351)
+            make.height.equalTo(60)
+        }
+        
+        mainButton.snp.makeConstraints { make in
+            make.top.equalTo(wrongButton.snp.bottom).offset(11)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(351)
+            make.height.equalTo(60)
+        }
+    }
+}
