@@ -26,6 +26,9 @@
 		1741140929ED68D9008C8EF1 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */; };
 		1741140C29ED6907008C8EF1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140A29ED6907008C8EF1 /* ResultsViewController.swift */; };
 		1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140B29ED6907008C8EF1 /* ResultsViewController.xib */; };
+		E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */; };
+		E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */; };
+		E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192229EED660009D8D75 /* CategoriesFactory.swift */; };
 		E4EFCAD929EDD51C005B437D /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EFCAD829EDD51C005B437D /* CategoryModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,9 @@
 		1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		1741140A29ED6907008C8EF1 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		1741140B29ED6907008C8EF1 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
+		E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
+		E4EE192229EED660009D8D75 /* CategoriesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFactory.swift; sourceTree = "<group>"; };
 		E4EFCAD829EDD51C005B437D /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +173,8 @@
 				E4EFCAD729EDD4FE005B437D /* Models */,
 				1741140629ED68D9008C8EF1 /* CategoriesViewController.swift */,
 				1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */,
+				E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */,
+				E4EE192229EED660009D8D75 /* CategoriesFactory.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				E4EFCAD829EDD51C005B437D /* CategoryModel.swift */,
+				E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,13 +281,16 @@
 			files = (
 				174113FA29ED67FD008C8EF1 /* GameViewController.swift in Sources */,
 				174113F629ED6563008C8EF1 /* RulesViewController.swift in Sources */,
+				E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */,
 				174113D929ED344B008C8EF1 /* Coordinator.swift in Sources */,
 				1741140C29ED6907008C8EF1 /* ResultsViewController.swift in Sources */,
+				E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */,
 				1741140029ED684E008C8EF1 /* TeamsViewController.swift in Sources */,
 				1741140829ED68D9008C8EF1 /* CategoriesViewController.swift in Sources */,
 				174113C229ED2E10008C8EF1 /* ViewController.swift in Sources */,
 				E4EFCAD929EDD51C005B437D /* CategoryModel.swift in Sources */,
 				174113BE29ED2E10008C8EF1 /* AppDelegate.swift in Sources */,
+				E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */,
 				174113C029ED2E10008C8EF1 /* SceneDelegate.swift in Sources */,
 				1741140429ED688D008C8EF1 /* MainViewController.swift in Sources */,
 			);

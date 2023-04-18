@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct CategoryModel {
+struct CategoryModel: Equatable {
     let categoryName: String
     let image: UIImageView
     let items: [String]

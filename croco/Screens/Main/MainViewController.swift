@@ -15,7 +15,6 @@ class MainViewController: UIViewController {
     var rulesButton: UIButton = UIButton()
     var teamsButton: UIButton = UIButton()
     var gameButton: UIButton = UIButton()
-    var categoriesButton: UIButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,6 @@ class MainViewController: UIViewController {
         setRulesButton()
         setTeamsButton()
         setGameButton()
-        setCategoriesButton()
         clearBackButtonTitle()
     }
     
@@ -132,31 +130,6 @@ struct ContentMainViewController_Previews: PreviewProvider {
             .previewInterfaceOrientation(.portrait)
             .edgesIgnoringSafeArea(.all)
             .colorScheme(.light) // or .dark
-    }
-}
-
-extension MainViewController {
-    private func setCategoriesButton() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.cornerStyle = .capsule
-        configuration.background.backgroundColor = UIColor.systemBlue
-        categoriesButton.configuration = configuration
-
-        categoriesButton.setTitle("go to categories", for: .normal)
-
-        self.view.addSubview(categoriesButton)
-
-        categoriesButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            categoriesButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            categoriesButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
-
-        categoriesButton.addTarget(self, action: #selector(navigateToCategories), for: .touchUpInside)
-    }
-
-    @objc func navigateToCategories() {
-        MainCoordinator.shared.push(.Categories)
     }
 }
 
