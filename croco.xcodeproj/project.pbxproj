@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,8 @@
 		1741140929ED68D9008C8EF1 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */; };
 		1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140A29ED6907008C8EF1 /* GameResultViewController.swift */; };
 		1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140B29ED6907008C8EF1 /* ResultsViewController.xib */; };
+		43871FAF29EE576800F57227 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43871FAE29EE576800F57227 /* GameView.swift */; };
+		43871FB129EE7D7900F57227 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43871FB029EE7D7900F57227 /* UIColor+extension.swift */; };
 		E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */; };
 		E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */; };
 		E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192229EED660009D8D75 /* CategoriesFactory.swift */; };
@@ -56,6 +58,8 @@
 		1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		1741140A29ED6907008C8EF1 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		1741140B29ED6907008C8EF1 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
+		43871FAE29EE576800F57227 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		43871FB029EE7D7900F57227 /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		E4EE192229EED660009D8D75 /* CategoriesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFactory.swift; sourceTree = "<group>"; };
@@ -151,8 +155,10 @@
 		174113DD29ED4B44008C8EF1 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				43871FAE29EE576800F57227 /* GameView.swift */,
 				174113F829ED67FD008C8EF1 /* GameViewController.swift */,
 				174113F929ED67FD008C8EF1 /* GameViewController.xib */,
+				43871FB029EE7D7900F57227 /* UIColor+extension.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -261,7 +267,7 @@
 				};
 			};
 			buildConfigurationList = 174113B529ED2E10008C8EF1 /* Build configuration list for PBXProject "croco" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -308,9 +314,11 @@
 				174113F629ED6563008C8EF1 /* RulesViewController.swift in Sources */,
 				E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */,
 				174113D929ED344B008C8EF1 /* Coordinator.swift in Sources */,
+				43871FB129EE7D7900F57227 /* UIColor+extension.swift in Sources */,
 				1741140C29ED6907008C8EF1 /* ResultsViewController.swift in Sources */,
 				E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */,
 				1741140029ED684E008C8EF1 /* TeamsViewController.swift in Sources */,
+				43871FAF29EE576800F57227 /* GameView.swift in Sources */,
 				1741140829ED68D9008C8EF1 /* CategoriesViewController.swift in Sources */,
 				174113C229ED2E10008C8EF1 /* ViewController.swift in Sources */,
 				E4EFCAD929EDD51C005B437D /* CategoryModel.swift in Sources */,
