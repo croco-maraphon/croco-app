@@ -14,6 +14,8 @@ class GameViewController: UIViewController {
     
     private let gameView = GameView()
     
+    let label = CategoriesPresenter.shared.getWordToPlay()
+    
     var timer = Timer()
     var secondRemaining = 60
 
