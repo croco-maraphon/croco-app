@@ -38,7 +38,7 @@ enum Screens {
         case .Game:
             return GameViewController()
         case .Results:
-            return ResultsViewController()
+            return GameResultViewController()
         }
     }
 }

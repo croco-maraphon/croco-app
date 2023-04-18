@@ -24,10 +24,10 @@
 		1741140529ED688D008C8EF1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140329ED688D008C8EF1 /* MainViewController.xib */; };
 		1741140829ED68D9008C8EF1 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140629ED68D9008C8EF1 /* CategoriesViewController.swift */; };
 		1741140929ED68D9008C8EF1 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */; };
-		1741140C29ED6907008C8EF1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140A29ED6907008C8EF1 /* ResultsViewController.swift */; };
+		1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140A29ED6907008C8EF1 /* GameResultViewController.swift */; };
 		1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140B29ED6907008C8EF1 /* ResultsViewController.xib */; };
 		7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234329EDC87D00479134 /* UIColor + extension.swift */; };
-		7EC3234729EDD15300479134 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234629EDD15300479134 /* ResultView.swift */; };
+		7EC3234729EDD15300479134 /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234629EDD15300479134 /* GameResultView.swift */; };
 		7ED08F2B29EDAA340003AE4D /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED08F2A29EDAA340003AE4D /* TeamsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,10 +50,10 @@
 		1741140329ED688D008C8EF1 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		1741140629ED68D9008C8EF1 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
-		1741140A29ED6907008C8EF1 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		1741140A29ED6907008C8EF1 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		1741140B29ED6907008C8EF1 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
 		7EC3234329EDC87D00479134 /* UIColor + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + extension.swift"; sourceTree = "<group>"; };
-		7EC3234629EDD15300479134 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		7EC3234629EDD15300479134 /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 		7ED08F2A29EDAA340003AE4D /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +105,7 @@
 		174113D429ED2F17008C8EF1 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				174113E929ED5501008C8EF1 /* Results */,
+				174113E929ED5501008C8EF1 /* GameResult */,
 				174113E629ED5466008C8EF1 /* Categories */,
 				174113DF29ED4B99008C8EF1 /* Main */,
 				174113DE29ED4B4F008C8EF1 /* Rules */,
@@ -176,14 +176,14 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		174113E929ED5501008C8EF1 /* Results */ = {
+		174113E929ED5501008C8EF1 /* GameResult */ = {
 			isa = PBXGroup;
 			children = (
-				1741140A29ED6907008C8EF1 /* ResultsViewController.swift */,
-				7EC3234629EDD15300479134 /* ResultView.swift */,
+				1741140A29ED6907008C8EF1 /* GameResultViewController.swift */,
+				7EC3234629EDD15300479134 /* GameResultView.swift */,
 				1741140B29ED6907008C8EF1 /* ResultsViewController.xib */,
 			);
-			path = Results;
+			path = GameResult;
 			sourceTree = "<group>";
 		};
 		7EC3234529EDC88000479134 /* Extensions */ = {
@@ -279,11 +279,11 @@
 				174113FA29ED67FD008C8EF1 /* GameViewController.swift in Sources */,
 				174113F629ED6563008C8EF1 /* RulesViewController.swift in Sources */,
 				174113D929ED344B008C8EF1 /* Coordinator.swift in Sources */,
-				1741140C29ED6907008C8EF1 /* ResultsViewController.swift in Sources */,
+				1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */,
 				1741140029ED684E008C8EF1 /* TeamsViewController.swift in Sources */,
 				1741140829ED68D9008C8EF1 /* CategoriesViewController.swift in Sources */,
 				174113C229ED2E10008C8EF1 /* ViewController.swift in Sources */,
-				7EC3234729EDD15300479134 /* ResultView.swift in Sources */,
+				7EC3234729EDD15300479134 /* GameResultView.swift in Sources */,
 				7ED08F2B29EDAA340003AE4D /* TeamsView.swift in Sources */,
 				174113BE29ED2E10008C8EF1 /* AppDelegate.swift in Sources */,
 				7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */,

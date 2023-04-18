@@ -10,9 +10,9 @@ import UIKit
 import SwiftUI
 import SnapKit
 
-class ResultsViewController: UIViewController {
+class GameResultViewController: UIViewController {
     
-    let resultView = ResultView.shared
+    let resultView = GameResultView.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class ResultsViewController: UIViewController {
     }
 }
 
-extension ResultsViewController {
+extension GameResultViewController {
     private func setViews() {
         view.addSubview(resultView.backgroundImage)
         
@@ -55,7 +55,7 @@ extension ResultsViewController {
         }
         
         resultView.resultLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(31)
+            make.top.equalToSuperview().inset(40)
             make.centerX.equalToSuperview()
         }
         
@@ -151,5 +151,25 @@ extension ResultsViewController {
             make.leading.trailing.equalToSuperview().inset(14)
             make.bottom.equalToSuperview().inset(62)
         }
+    }
+}
+
+
+struct ContentViewController: UIViewControllerRepresentable {
+
+    typealias UIViewControllerType = GameResultViewController
+
+    func makeUIViewController(context: Context) -> UIViewControllerType {
+        return GameResultViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: GameResultViewController, context: Context) {}
+}
+
+struct ContentViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentViewController()
+            .edgesIgnoringSafeArea(.all)
+            .colorScheme(.light) // or .dark
     }
 }
