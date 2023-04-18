@@ -153,23 +153,3 @@ extension GameResultViewController {
         }
     }
 }
-
-
-struct ContentViewController: UIViewControllerRepresentable {
-
-    typealias UIViewControllerType = GameResultViewController
-
-    func makeUIViewController(context: Context) -> UIViewControllerType {
-        return GameResultViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: GameResultViewController, context: Context) {}
-}
-
-struct ContentViewController_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentViewController()
-            .edgesIgnoringSafeArea(.all)
-            .colorScheme(.light) // or .dark
-    }
-}
