@@ -43,6 +43,8 @@ class GameViewController: UIViewController {
         gameView.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.equalToSuperview()
         }
+        
+        gameView.wordLabel.text = label
     }
     
     func startTimer() {

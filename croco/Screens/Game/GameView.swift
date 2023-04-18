@@ -37,7 +37,7 @@ class GameView: UIView {
         return label
     }()
     
-    private let wordLabel: UILabel = {
+    let wordLabel: UILabel = {
         let label = UILabel()
         label.text = "Картошка"
         label.font = UIFont.italicSystemFont(ofSize: 48)

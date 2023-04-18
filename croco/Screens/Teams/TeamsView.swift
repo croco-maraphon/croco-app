@@ -65,7 +65,7 @@ final class TeamsView {
         return label
     }()
     
-    lazy var readyButton: UIButton = {
+    var readyButton: UIButton = {
         var button = UIButton(type: .system)
         button.setTitle("Игроки готовы", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)

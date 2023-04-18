@@ -19,6 +19,11 @@ class TeamsViewController: UIViewController {
         setViews()
         setConstraints()
     }
+    
+    @objc func goToCategoriesView() {
+        print("look at this")
+        MainCoordinator.shared.push(.Categories)
+    }
 }
 
 extension TeamsViewController {
@@ -80,6 +85,8 @@ extension TeamsViewController {
             make.leading.trailing.equalToSuperview().inset(14)
             make.bottom.equalToSuperview().inset(62)
         }
+        
+        teamsView.readyButton.addTarget(self, action: #selector(goToCategoriesView), for: .touchUpInside)
     }
         
     private func setNavigationBar() {
