@@ -194,6 +194,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7EC3234529EDC88000479134 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7EC3234329EDC87D00479134 /* UIColor + extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
