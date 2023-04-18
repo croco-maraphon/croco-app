@@ -18,7 +18,17 @@ class GameResultViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setConstraints()
+        setTargets()
+    }
+    private func setTargets() {
+        resultView.resetButton.addTarget(self, action: #selector(switchToTeamsViewController), for: .touchUpInside)
+    }
+    
+    @objc private func switchToTeamsViewController() {
+        let viewController = TeamsViewController()
+        viewController.modalPresentationStyle = .overFullScreen
         
+        present(viewController, animated: true)
     }
 }
 

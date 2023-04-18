@@ -14,12 +14,14 @@ class RoundResultsViewController: UIViewController {
     private var roundResultView = RoundResultsView.shared
     
     var isWinRound: Bool = true
+    var maxCurrentScore = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
         setConstraints()
         showResult(result: isWinRound)
+        checkCurrentScore(maxCurrentScore)
     }
     
     private func showResult(result: Bool) {
@@ -59,6 +61,31 @@ class RoundResultsViewController: UIViewController {
         case false:
             roundResultView.topScoreLabel.text = "0"
         }
+    }
+    
+    private func checkCurrentScore(_ score: Int) {
+        if score == 5 {
+            roundResultView.nextTurnButton.setTitle("Посмотреть результаты", for: .normal)
+            roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
+                                                     for: .touchUpInside)
+        } else {
+            roundResultView.nextTurnButton.setTitle("Следующий ход - Стройняшки", for: .normal)
+            roundResultView.nextTurnButton.addTarget(self, action: #selector(swithToGameViewController), for: .touchUpInside)
+        }
+    }
+    
+    @objc private func swithToGameViewController() {
+        let viewController = GameViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        
+        present(viewController, animated: true)
+    }
+    
+    @objc private func switchToGameResultViewController() {
+        let viewController = GameResultViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        
+        present(viewController, animated: true)
     }
 }
 
