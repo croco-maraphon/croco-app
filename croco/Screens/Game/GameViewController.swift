@@ -56,7 +56,9 @@ class GameViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        if secondRemaining > 10 {
+        if secondRemaining == 0 {
+            navigateToWrong()
+        } else if secondRemaining > 10 {
             secondRemaining -= 1
             gameView.timerLabel.text = "00:\(secondRemaining)"
         } else if secondRemaining > 0 {
@@ -69,21 +71,28 @@ class GameViewController: UIViewController {
     // переход на CorrectViewController
     private func correctButtonPressed() {
         gameView.correctButton.addTarget(self, action: #selector(navigateToCorrect), for: .touchUpInside)
-        
     }
     
     @objc func navigateToCorrect() {
-        MainCoordinator.shared.pop()
+        let viewController = RoundResultsViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.isWin = true
+        
+        present(viewController, animated: true)
     }
     
     // переход на WrangViewController
     private func wrongButtonPressed() {
         gameView.wrongButton.addTarget(self, action: #selector(navigateToWrong), for: .touchUpInside)
-        
     }
     
     @objc func navigateToWrong() {
-        MainCoordinator.shared.pop()
+        let viewController = RoundResultsViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.isWin = false
+        
+        present(viewController, animated: true)
+        
     }
     
     // переход на MainViewController
