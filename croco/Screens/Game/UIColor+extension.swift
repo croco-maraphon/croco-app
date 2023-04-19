@@ -1,10 +1,3 @@
-//
-//  UIColor+extension.swift
-//  thinkapp-ios
-//
-//  Created by Александр Гужавин on 30.08.2022.
-//
-
 import Foundation
 import UIKit
 

@@ -5,93 +5,83 @@
 //  Created by Aleksandr Menshikov on 17.04.2023.
 //
 
-import Foundation
 import UIKit
 import SnapKit
 
 class TeamsViewController: UIViewController {
     
-    private let teamsView = TeamsView.shared
-    
+    private let team = TeamAPI.getTeam()
+    private let teamsTable: TeamsTableView = TeamsTableView()
+
+    // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBar()
-        setViews()
-        setConstraints()
+        registerCells()
+        configureViewController()
+        conformProtocols()
+        playersReadyButtonPressed()
     }
     
-    @objc func goToCategoriesView() {
-        print("look at this")
+    override func loadView() {
+        self.view = teamsTable
+    }
+    
+    // MARK: - Private Methods
+    private func registerCells() {
+        teamsTable.tableView.register(TeamTableViewCell.self, forCellReuseIdentifier: TeamTableViewCell.cellIdentifier)
+    }
+    
+    private func configureViewController() {       
+        let label = UILabel()
+        label.text = "Кто играет?"
+        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
+        navigationItem.titleView = label
+    }
+    
+    private func conformProtocols() {
+        teamsTable.tableView.dataSource = self
+        teamsTable.tableView.delegate = self
+    }
+    
+    private func addViews() {
+        view.addSubview(teamsTable)
+    }
+    
+    private func addConstraints() {
+        teamsTable.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
+    }
+    
+    // переход на CategoriesViewController
+    private func playersReadyButtonPressed() {
+        teamsTable.playersReadyButton.addTarget(self, action: #selector(navigateToCategories), for: .touchUpInside)
+    }
+    
+    @objc func navigateToCategories() {
         MainCoordinator.shared.push(.Categories)
     }
 }
 
-extension TeamsViewController {
-    private func setViews() {
-        view.addSubview(teamsView.backgroundImage)
-        
-        teamsView.topTeamView.addSubview(teamsView.topTeamImage)
-        teamsView.topTeamView.addSubview(teamsView.topTeamLabel)
-        
-        teamsView.bottomTeamView.addSubview(teamsView.bottomTeamImage)
-        teamsView.bottomTeamView.addSubview(teamsView.bottomTeamLabel)
-        
-        view.addSubview(teamsView.topTeamView)
-        view.addSubview(teamsView.bottomTeamView)
-        view.addSubview(teamsView.readyButton)
+// MARK: - UITableViewDataSource
+extension TeamsViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return team.count
     }
     
-    private func setConstraints() {
-        teamsView.backgroundImage.snp.makeConstraints { make in
-            make.top.leading.bottom.trailing.equalToSuperview()
-        }
-    
-        teamsView.topTeamView.snp.makeConstraints { make in
-            make.height.equalTo(96)
-            make.leading.equalToSuperview().inset(14)
-            make.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(36)
-        }
-        
-        teamsView.topTeamImage.snp.makeConstraints { make in
-            make.width.height.equalTo(56)
-            make.top.bottom.equalToSuperview().inset(20)
-            make.leading.equalTo(17)
-        }
-        
-        teamsView.topTeamLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        
-        teamsView.bottomTeamView.snp.makeConstraints { make in
-            make.height.equalTo(96)
-            make.leading.equalToSuperview().inset(14)
-            make.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(teamsView.topTeamView.snp.bottom).inset(-36)
-        }
-        
-        teamsView.bottomTeamImage.snp.makeConstraints { make in
-            make.width.height.equalTo(56)
-            make.top.bottom.equalToSuperview().inset(20)
-            make.leading.equalTo(17)
-        }
-        
-        teamsView.bottomTeamLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        
-        teamsView.readyButton.snp.makeConstraints { make in
-            make.height.equalTo(63)
-            make.leading.trailing.equalToSuperview().inset(14)
-            make.bottom.equalToSuperview().inset(62)
-        }
-        
-        teamsView.readyButton.addTarget(self, action: #selector(goToCategoriesView), for: .touchUpInside)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TeamTableViewCell.cellIdentifier,
+                                                 for: indexPath) as! TeamTableViewCell
+        cell.team = team[indexPath.row]
+        return cell
     }
-        
-    private func setNavigationBar() {
-        navigationItem.title = "Кто играет?"
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 34)]
+}
+
+// MARK: - UITableViewDelegate
+extension TeamsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 96
     }
 }
