@@ -56,30 +56,26 @@ class GameViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        if secondRemaining > 10 {
-            secondRemaining -= 1
+        secondRemaining -= 1
+        if secondRemaining > 9 {
             gameView.timerLabel.text = "00:\(secondRemaining)"
-        } else if secondRemaining > 0 {
-            secondRemaining -= 1
+        } else if secondRemaining >= 0 {
             gameView.timerLabel.text = "00:0\(secondRemaining)"
         }
     }
     
-    
     // переход на CorrectViewController
     private func correctButtonPressed() {
         gameView.correctButton.addTarget(self, action: #selector(navigateToCorrect), for: .touchUpInside)
-        
     }
     
     @objc func navigateToCorrect() {
         MainCoordinator.shared.pop()
     }
     
-    // переход на WrangViewController
+    // переход на WrongViewController
     private func wrongButtonPressed() {
         gameView.wrongButton.addTarget(self, action: #selector(navigateToWrong), for: .touchUpInside)
-        
     }
     
     @objc func navigateToWrong() {
@@ -88,11 +84,24 @@ class GameViewController: UIViewController {
     
     // переход на MainViewController
     private func mainButtonPressed() {
-        gameView.mainButton.addTarget(self, action: #selector(navigateToMain), for: .touchUpInside)
-        
+        gameView.mainButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
     }
     
-    @objc func navigateToMain() {
-        MainCoordinator.shared.pop()
+    @objc func showAlert() {
+        let alert = UIAlertController(title: "Сбросить игру?",
+                                      message: "Вы хотите сбросить вашу игру и вернуться в главное меню?",
+                                      preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let yesAction = UIAlertAction(title: "Да", style: .default) { _ in
+            self.navigateToMain()
+        }
+        yesAction.setValue(UIColor.red, forKey: "titleTextColor")
+        alert.addAction(cancelAction)
+        alert.addAction(yesAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func navigateToMain() {
+        MainCoordinator.shared.start()
     }
 }

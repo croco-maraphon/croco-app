@@ -29,7 +29,7 @@ class GameView: UIView {
     
     let timerLabel: UILabel = {
         let label = UILabel()
-        label.text = "00:59"
+        label.text = "00:60"
         label.font = UIFont.italicSystemFont(ofSize: 48)
         label.textColor = .black
         label.textAlignment = .center
@@ -41,6 +41,8 @@ class GameView: UIView {
         let label = UILabel()
         label.text = "Картошка"
         label.font = UIFont.italicSystemFont(ofSize: 48)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -50,6 +52,8 @@ class GameView: UIView {
         let label = UILabel()
         label.text = "объясни с помощью жестов"
         label.font = UIFont.italicSystemFont(ofSize: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .center
@@ -116,7 +120,7 @@ class GameView: UIView {
         }
         
         crocoImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(36)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(-8)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(139)
         }
@@ -129,8 +133,7 @@ class GameView: UIView {
         }
         
         wordLabel.snp.makeConstraints { make in
-            make.top.equalTo(timerLabel.snp.bottom).offset(100)
-            make.centerX.equalToSuperview()
+            make.center.equalToSuperview()
             make.width.equalTo(247)
             make.height.equalTo(48)
         }
@@ -143,21 +146,21 @@ class GameView: UIView {
         }
         
         correctButton.snp.makeConstraints { make in
-            make.top.equalTo(commentLabel.snp.bottom).offset(106)
+            make.bottom.equalTo(wrongButton.snp.top).offset(-11)
             make.centerX.equalToSuperview()
             make.width.equalTo(351)
             make.height.equalTo(60)
         }
         
         wrongButton.snp.makeConstraints { make in
-            make.top.equalTo(correctButton.snp.bottom).offset(11)
+            make.bottom.equalTo(mainButton.snp.top).offset(-11)
             make.centerX.equalToSuperview()
             make.width.equalTo(351)
             make.height.equalTo(60)
         }
         
         mainButton.snp.makeConstraints { make in
-            make.top.equalTo(wrongButton.snp.bottom).offset(11)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(0)
             make.centerX.equalToSuperview()
             make.width.equalTo(351)
             make.height.equalTo(60)

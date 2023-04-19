@@ -22,7 +22,7 @@ final class CategoriesPresenter {
         }
 
         categoriesFactory = CategoriesFactory()
-        guard let categoriesFactory else {
+        guard let categoriesFactory = categoriesFactory else {
             fatalError("categoriesFactory not found")
         }
         return categoriesFactory.getRandomWord(
