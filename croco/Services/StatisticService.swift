@@ -18,6 +18,30 @@ final class StatisticService: StatisticServiceProtocol {
         userDefaults.set(points, forKey: "croco \(team)")
     }
 
+    public func getDictionary() -> [String: Int] {
+        let dictionary = UserDefaults.standard.dictionaryRepresentation()
+
+        let filteredDictionary = dictionary.filter { (key, value) -> Bool in
+            return key.hasPrefix("croco ")
+        }
+
+        let prefixToRemove = "croco "
+        var updatedDictionary: [String: Int] = [:]
+
+        filteredDictionary.forEach { (key, value) in
+            if let intValue = value as? Int {
+                if key.hasPrefix(prefixToRemove) {
+                    let newKey = String(key.dropFirst(prefixToRemove.count))
+                    updatedDictionary[newKey] = intValue
+                } else {
+                    updatedDictionary[key] = intValue
+                }
+            }
+        }
+
+        return updatedDictionary
+    }
+
     public func restore() {
         let keys = userDefaults.dictionaryRepresentation().keys
 
