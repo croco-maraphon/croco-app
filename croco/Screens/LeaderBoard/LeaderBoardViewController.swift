@@ -17,42 +17,34 @@ final class LeaderBoardViewController: UIViewController {
         return tableView
     }()
 
+    private let restoreButton = UIButton()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setBackground()
         setHeader()
+        setTable()
+        setRestoreButton()
 
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(LeaderBoardCell.self, forCellReuseIdentifier: LeaderBoardCell.reuseIdentifier)
-
-        setTable()
-
-        UserDefaults.standard.set(5, forKey: "croco Ковбои")
-        let userDefaultsDictionary = UserDefaults.standard.dictionaryRepresentation()
-        let filter = userDefaultsDictionary.filter { (key, value) -> Bool in
-            return key.hasPrefix("croco ")
-        }
-        print(filter.keys)
+        tableView.register(
+            LeaderBoardCell.self,
+            forCellReuseIdentifier: LeaderBoardCell.reuseIdentifier
+        )
     }
 
-    func setlabel() {
-        let label = UILabel()
-        label.text = "LeaderBoardViewController"
-        self.view.addSubview(label)
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        ])
+    @objc func restoreLeaderBoard() {
+        self.tableView.removeFromSuperview()
     }
 }
 
 extension LeaderBoardViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
         return 10
     }
 
@@ -64,11 +56,14 @@ extension LeaderBoardViewController: UITableViewDataSource {
             withIdentifier: LeaderBoardCell.reuseIdentifier,
             for: indexPath
         )
+
         guard let leaderBoardCell = cell as? LeaderBoardCell else {
             return UITableViewCell()
         }
-        leaderBoardCell.configCell()
+
         leaderBoardCell.backgroundColor = UIColor.clear
+        leaderBoardCell.selectionStyle = .none
+
         return leaderBoardCell
     }
 }
@@ -147,5 +142,65 @@ extension LeaderBoardViewController {
         )
 
         navigationItem.titleView = label
+    }
+}
+
+extension LeaderBoardViewController {
+    private func setConfigurationToButton(
+        button: UIButton,
+        title: String,
+        height: CGFloat
+    ) {
+        button.setTitle(title, for: .normal)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.systemFont(
+            ofSize: 20,
+            weight: .regular
+        )
+        self.view.addSubview(button)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            button.leadingAnchor.constraint(
+                equalTo: self.view.leadingAnchor,
+                constant: 14
+            ),
+            button.trailingAnchor.constraint(
+                equalTo: self.view.trailingAnchor,
+                constant: -14
+            ),
+            button.heightAnchor.constraint(
+                equalToConstant: height
+            ),
+            button.bottomAnchor.constraint(
+                equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -27
+            )
+        ])
+    }
+}
+
+extension LeaderBoardViewController {
+    private func setRestoreButton() {
+        setConfigurationToButton(
+            button: restoreButton,
+            title: "Сбросить",
+            height: 63
+        )
+
+        restoreButton.backgroundColor = UIColor(
+            red: 0.902,
+            green: 0.275,
+            blue: 0.275,
+            alpha: 1
+        )
+
+        restoreButton.addTarget(
+            self,
+            action: #selector(restoreLeaderBoard),
+            for: .touchUpInside
+        )
     }
 }
