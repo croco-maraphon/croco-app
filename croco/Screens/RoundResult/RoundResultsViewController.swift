@@ -14,6 +14,8 @@ class RoundResultsViewController: UIViewController {
     private var roundResultView = RoundResultsView()
     var currentTeamScore: [TeamModel] = []
     
+    var isWinRound: Bool = true
+    var maxCurrentScore = 0
     
     var isWin: Bool?
         
@@ -21,8 +23,8 @@ class RoundResultsViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setConstraints()
-        addTargets()
-        showResult(result: isWin)
+        showResult(result: isWinRound)
+        checkCurrentScore(maxCurrentScore)
     }
     
     func showResult(result: Bool?) {
@@ -64,14 +66,26 @@ class RoundResultsViewController: UIViewController {
         }
     }
     
-    
-    
-    private func addTargets() {
-        roundResultView.nextTurnButton.addTarget(self, action: #selector(swithToGameViewController), for: .touchUpInside)
+    private func checkCurrentScore(_ score: Int) {
+        if score == 5 {
+            roundResultView.nextTurnButton.setTitle("Посмотреть результаты", for: .normal)
+            roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
+                                                     for: .touchUpInside)
+        } else {
+            roundResultView.nextTurnButton.setTitle("Следующий ход - Стройняшки", for: .normal)
+            roundResultView.nextTurnButton.addTarget(self, action: #selector(swithToGameViewController), for: .touchUpInside)
+        }
     }
     
     @objc private func swithToGameViewController() {
         let viewController = GameViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        
+        present(viewController, animated: true)
+    }
+
+    @objc private func switchToGameResultViewController() {
+        let viewController = GameResultViewController()
         viewController.modalPresentationStyle = .overFullScreen
         
         present(viewController, animated: true)
