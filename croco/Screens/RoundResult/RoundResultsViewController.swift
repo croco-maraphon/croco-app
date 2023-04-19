@@ -11,11 +11,14 @@ import SnapKit
 
 class RoundResultsViewController: UIViewController {
     
-    private var roundResultView = RoundResultsView.shared
+    private var roundResultView = RoundResultsView()
+    var currentTeamScore: [TeamModel] = []
     
     var isWinRound: Bool = true
     var maxCurrentScore = 0
     
+    var isWin: Bool?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
@@ -24,7 +27,8 @@ class RoundResultsViewController: UIViewController {
         checkCurrentScore(maxCurrentScore)
     }
     
-    private func showResult(result: Bool) {
+    func showResult(result: Bool?) {
+        guard let result = result else { return }
         switch result {
         case true:
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "74A730")
@@ -39,7 +43,6 @@ class RoundResultsViewController: UIViewController {
             roundResultView.getPointOrNotLabel.text = "Вы не отгадали слово и не получаете очков!"
             roundResultView.pointsImage.image = UIImage(named: "Ellipse 2")
             addScore(result: result)
-            
         }
     }
     
@@ -80,7 +83,7 @@ class RoundResultsViewController: UIViewController {
         
         present(viewController, animated: true)
     }
-    
+
     @objc private func switchToGameResultViewController() {
         let viewController = GameResultViewController()
         viewController.modalPresentationStyle = .overFullScreen

@@ -12,7 +12,7 @@ import SnapKit
 
 class GameResultViewController: UIViewController {
     
-    let resultView = GameResultView.shared
+    let resultView = GameResultView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
