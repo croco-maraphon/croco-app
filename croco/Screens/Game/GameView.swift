@@ -102,6 +102,7 @@ class GameView: UIView {
     }
     
     // MARK: - Private Methods
+    
     private func addViews() {
         addSubview(backgroundImageView)
         addSubview(crocoImageView)

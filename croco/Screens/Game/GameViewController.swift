@@ -57,6 +57,12 @@ class GameViewController: UIViewController {
     
     @objc func updateTimer() {
         secondRemaining -= 1
+        
+        if secondRemaining == 0 {
+            navigateToWrong()
+            return
+         }
+
         if secondRemaining > 9 {
             gameView.timerLabel.text = "00:\(secondRemaining)"
         } else if secondRemaining >= 0 {
@@ -70,7 +76,11 @@ class GameViewController: UIViewController {
     }
     
     @objc func navigateToCorrect() {
-        MainCoordinator.shared.pop()
+        let viewController = RoundResultsViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.isWin = true
+        
+        present(viewController, animated: true)
     }
     
     // переход на WrongViewController
@@ -79,7 +89,12 @@ class GameViewController: UIViewController {
     }
     
     @objc func navigateToWrong() {
-        MainCoordinator.shared.pop()
+        let viewController = RoundResultsViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.isWin = false
+        
+        present(viewController, animated: true)
+        
     }
     
     // переход на MainViewController
