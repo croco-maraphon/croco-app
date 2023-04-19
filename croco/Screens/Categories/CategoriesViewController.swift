@@ -51,7 +51,7 @@ class CategoriesViewController: UIViewController {
     }
 
     @objc func animalButtonTapped() {
-        guard let categoriesFactory else { return }
+        guard let categoriesFactory = categoriesFactory else { return }
 
         if let checkBox = animalButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
@@ -69,7 +69,7 @@ class CategoriesViewController: UIViewController {
     }
 
     @objc func foodButtonTapped() {
-        guard let categoriesFactory else { return }
+        guard let categoriesFactory = categoriesFactory else { return }
 
         if let checkBox = foodButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
@@ -87,7 +87,7 @@ class CategoriesViewController: UIViewController {
     }
 
     @objc func personButtonTapped() {
-        guard let categoriesFactory else { return }
+        guard let categoriesFactory = categoriesFactory else { return }
 
         if let checkBox = personButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
@@ -105,7 +105,7 @@ class CategoriesViewController: UIViewController {
     }
 
     @objc func hobbyButtonTapped() {
-        guard let categoriesFactory else { return }
+        guard let categoriesFactory = categoriesFactory else { return }
 
         if let checkBox = hobbyButton.viewWithTag(1) {
             checkBox.removeFromSuperview()
@@ -199,7 +199,7 @@ extension CategoriesViewController {
 
 extension CategoriesViewController {
     private func setButtons() {
-        guard let categoriesFactory else {
+        guard let categoriesFactory = categoriesFactory else {
             return
         }
         setConfigurationToButton(
@@ -291,7 +291,7 @@ extension CategoriesViewController {
 
 extension CategoriesViewController {
     private func addCategoryButtonsSubview() {
-        guard let categoriesFactory else { return }
+        guard let categoriesFactory = categoriesFactory else { return }
         self.view.addSubview(animalButton)
         animalButton.addSubview(
             categoriesFactory.categories[0].image
@@ -316,7 +316,7 @@ extension CategoriesViewController {
     }
 
     private func applyConstraintsToButtons() {
-        guard let categoriesFactory else { return }
+        guard let categoriesFactory = categoriesFactory else { return }
         NSLayoutConstraint.activate([
             animalButton.topAnchor.constraint(
                 equalTo: self.view.topAnchor,
