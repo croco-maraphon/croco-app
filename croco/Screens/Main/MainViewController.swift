@@ -11,98 +11,156 @@ import SwiftUI
 import SnapKit
 
 class MainViewController: UIViewController {
+        
+    var block1 = UIView()
+    var block2 = UIView()
+    var block3 = UIView()
     
-    var rulesButton: UIButton = UIButton()
-    var teamsButton: UIButton = UIButton()
-    var gameButton: UIButton = UIButton()
-
+    var startGameButton = UIButton()
+    var rulesButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setBackground()
-        setTitle()
-        setRulesButton()
-        setTeamsButton()
-        setGameButton()
-        clearBackButtonTitle()
+        setupViews()
+        setupConstraints()
+        logo()
+        addGrass()
+        setupGameButton()
+        setupRulesButton()
     }
     
-    public func setBackground() {
-        self.view.backgroundColor = .white
+    func setupViews() {
+        view.addSubview(block1)
+        view.addSubview(block2)
+        view.addSubview(block3)
     }
     
-    public func setTitle() {
-        let label = UILabel()
-        label.text = "Main View Controller"
+    func setupConstraints() {
+        block1.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(block2)
+        }
         
-        self.view.addSubview(label)
+        block2.snp.makeConstraints { (make) in
+            make.top.equalTo(block1.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(block1)
+        }
         
-        label.snp.makeConstraints { make in
-            make.center.equalTo(self.view)
+        block3.snp.makeConstraints { (make) in
+            make.top.equalTo(block2.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottom)
+            make.height.equalTo(70)
         }
     }
+    
+    
+    public func logo() {
+        let croco = UIImage(named: "croco")
         
-    private func setRulesButton() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.cornerStyle = .capsule
-        configuration.background.backgroundColor = UIColor.systemBlue
-        rulesButton.configuration = configuration
+        guard let croco = croco else {
+            fatalError("croco image is empty");
+        }
         
-        rulesButton.setTitle("go to rules", for: .normal)
-                
-        self.view.addSubview(rulesButton)
+        let imageView = UIImageView(image: croco)
+        imageView.contentMode = .scaleAspectFit
+        
+        block1.addSubview(imageView)
+        
+        imageView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalTo(block1)
+        }
+    }
+    
+    public func addGrass() {
+        let grass = UIImage(named: "grass")
+        
+        guard let grass = grass else {
+            fatalError("grass image is empty")
+        }
+        
+        let imageViewGrass1 = UIImageView(image: grass)
+        let imageViewGrass2 = UIImageView(image: grass)
+        
+        imageViewGrass1.contentMode = .scaleAspectFit
+        imageViewGrass2.contentMode = .scaleAspectFit
+        
+        block3.addSubview(imageViewGrass1)
+        block3.addSubview(imageViewGrass2)
+        
+        imageViewGrass1.snp.makeConstraints { make in
+            make.height.equalTo(block3)
+            make.left.bottom.equalTo(block3)
+        }
+        
+        imageViewGrass2.snp.makeConstraints { make in
+            make.height.equalTo(block3)
+            make.right.bottom.equalTo(block3)
+        }
+    }
+    
+    public func setupGameButton() {
+        startGameButton.setTitle("Старт игры", for: .normal)
+        startGameButton.layer.masksToBounds = true
+        startGameButton.layer.cornerRadius = 10
+        startGameButton.titleLabel?.font = UIFont.systemFont(
+            ofSize: 20,
+            weight: .regular
+        )
+        startGameButton.backgroundColor = .systemBlue
+        
+        block2.addSubview(startGameButton)
+        
+        startGameButton.snp.makeConstraints { make in
+            make.top.equalTo(block2).inset(54)
+            make.left.right.equalTo(view).inset(50)
+            make.height.equalTo(80)
+        }
+        
+        startGameButton.addTarget(self, action: #selector(navigateToTeams), for: .touchUpInside)
+    }
+    
+    func setupRulesButton() {
+        rulesButton.setTitle("Правила", for: .normal)
+        rulesButton.layer.masksToBounds = true
+        rulesButton.layer.cornerRadius = 10
+        rulesButton.titleLabel?.font = UIFont.systemFont(
+            ofSize: 17,
+            weight: .regular
+        )
+        rulesButton.backgroundColor = .systemBlue
+        
+        block2.addSubview(rulesButton)
         
         rulesButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide)
-            make.width.equalTo(200)
+            make.top.equalTo(startGameButton.snp.bottom).offset(20)
+            make.left.right.equalTo(view).inset(80)
+            make.height.equalTo(60)
         }
         
         rulesButton.addTarget(self, action: #selector(navigateToRules), for: .touchUpInside)
     }
-    
-    private func setTeamsButton() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.cornerStyle = .capsule
-        configuration.background.backgroundColor = UIColor.systemBlue
-        teamsButton.configuration = configuration
         
-        teamsButton.setTitle("go to teams", for: .normal)
-                
-        self.view.addSubview(teamsButton)
+    public func setBackground() {
+        let background = UIImage(named: "background")
         
-        teamsButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.rulesButton.snp.top).offset(-20)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide)
-            make.width.equalTo(200)
+        guard let background = background else {
+            fatalError("background image is empty");
         }
         
-        teamsButton.addTarget(self, action: #selector(navigateToTeams), for: .touchUpInside)
-    }
-    
-    private func setGameButton() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.cornerStyle = .capsule
-        configuration.background.backgroundColor = UIColor.systemBlue
-        gameButton.configuration = configuration
+        let imageView = UIImageView(image: background)
         
-        gameButton.setTitle("go to game", for: .normal)
-                
-        self.view.addSubview(gameButton)
+        self.view.addSubview(imageView)
         
-        gameButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.teamsButton.snp.top).offset(-20)
-            make.centerX.equalTo(self.view.safeAreaLayoutGuide)
-            make.width.equalTo(200)
+        imageView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalTo(view)
         }
+    }
         
-        gameButton.addTarget(self, action: #selector(navigateToGame), for: .touchUpInside)
-    }
-    
-    @objc func navigateToGame() {
-        MainCoordinator.shared.push(.Game)
-    }
-    
     @objc func navigateToRules() {
         MainCoordinator.shared.push(.Rules)
     }
@@ -110,17 +168,17 @@ class MainViewController: UIViewController {
     @objc func navigateToTeams() {
         MainCoordinator.shared.push(.Teams)
     }
- 
+    
 }
 
 struct ContentMainViewController: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = MainViewController
-
+    
     func makeUIViewController(context: Context) -> UIViewControllerType {
         return MainViewController()
     }
-
+    
     func updateUIViewController(_ uiViewController: MainViewController, context: Context) {}
 }
 
@@ -129,7 +187,7 @@ struct ContentMainViewController_Previews: PreviewProvider {
         ContentMainViewController()
             .previewInterfaceOrientation(.portrait)
             .edgesIgnoringSafeArea(.all)
-            .colorScheme(.light) // or .dark
+        //            .colorScheme(.light) // or .dark
     }
 }
 
