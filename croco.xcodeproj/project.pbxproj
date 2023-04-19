@@ -36,6 +36,11 @@
 		7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234329EDC87D00479134 /* UIColor + extension.swift */; };
 		7EC3234729EDD15300479134 /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234629EDD15300479134 /* GameResultView.swift */; };
 		7ED2E8A829EE876E008DCF53 /* RoundResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */; };
+		E420454329EF18B300697334 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454229EF18B300697334 /* LeaderBoardViewController.swift */; };
+		E420454729EF1AE800697334 /* LeaderBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E420454629EF1AE800697334 /* LeaderBoardViewController.xib */; };
+		E420454929EF1E7E00697334 /* LeaderBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454829EF1E7E00697334 /* LeaderBoardCell.swift */; };
+		E420454B29F03E1500697334 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454A29F03E1500697334 /* MockModel.swift */; };
+		7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */; };
 		E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */; };
 		E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */; };
 		E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192229EED660009D8D75 /* CategoriesFactory.swift */; };
@@ -73,6 +78,11 @@
 		7EC3234629EDD15300479134 /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 		7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsViewController.swift; sourceTree = "<group>"; };
 		7ED2E8A929EE8777008DCF53 /* RoundResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsView.swift; sourceTree = "<group>"; };
+		E420454229EF18B300697334 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
+		E420454629EF1AE800697334 /* LeaderBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderBoardViewController.xib; sourceTree = "<group>"; };
+		E420454829EF1E7E00697334 /* LeaderBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardCell.swift; sourceTree = "<group>"; };
+		E420454A29F03E1500697334 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
+		7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		E4EE192229EED660009D8D75 /* CategoriesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFactory.swift; sourceTree = "<group>"; };
@@ -111,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				174113D729ED2F40008C8EF1 /* Models */,
+				7ED2E8AF29EF0B8D008DCF53 /* Model */,
 				174113D429ED2F17008C8EF1 /* Screens */,
 				174113D629ED2F35008C8EF1 /* Utils */,
 				174113D829ED344B008C8EF1 /* Coordinator.swift */,
@@ -127,6 +138,7 @@
 		174113D429ED2F17008C8EF1 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				E420454129EF189F00697334 /* LeaderBoard */,
 				7ED2E8A629EE8759008DCF53 /* RoundResult */,
 				174113E929ED5501008C8EF1 /* GameResult */,
 				174113E629ED5466008C8EF1 /* Categories */,
@@ -234,6 +246,26 @@
 			path = RoundResult;
 			sourceTree = "<group>";
 		};
+		E420454129EF189F00697334 /* LeaderBoard */ = {
+			isa = PBXGroup;
+			children = (
+				E420454229EF18B300697334 /* LeaderBoardViewController.swift */,
+				E420454629EF1AE800697334 /* LeaderBoardViewController.xib */,
+				E420454829EF1E7E00697334 /* LeaderBoardCell.swift */,
+				E420454A29F03E1500697334 /* MockModel.swift */,
+			);
+			path = LeaderBoard;
+      sourceTree = "<group>";
+    }
+		7ED2E8AF29EF0B8D008DCF53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */,
+			);
+			path = Model;
+
+			sourceTree = "<group>";
+		};
 		E4EFCAD729EDD4FE005B437D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +344,7 @@
 				1741140929ED68D9008C8EF1 /* CategoriesViewController.xib in Resources */,
 				1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */,
 				174113CA29ED2E11008C8EF1 /* LaunchScreen.storyboard in Resources */,
+				E420454729EF1AE800697334 /* LeaderBoardViewController.xib in Resources */,
 				174113C729ED2E11008C8EF1 /* Assets.xcassets in Resources */,
 				1741140129ED684E008C8EF1 /* TeamsViewController.xib in Resources */,
 				174113F729ED6563008C8EF1 /* RulesViewController.xib in Resources */,
@@ -331,6 +364,7 @@
 				E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */,
 				436570F629F0354E003E6765 /* TeamsTableView.swift in Sources */,
 				174113D929ED344B008C8EF1 /* Coordinator.swift in Sources */,
+				E420454329EF18B300697334 /* LeaderBoardViewController.swift in Sources */,
 				43871FB129EE7D7900F57227 /* UIColor+extension.swift in Sources */,
 				1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */,
 				E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */,
@@ -342,14 +376,17 @@
 				E4EFCAD929EDD51C005B437D /* CategoryModel.swift in Sources */,
 				174113BE29ED2E10008C8EF1 /* AppDelegate.swift in Sources */,
 				17E775C129EEFBB9004F6051 /* RoundResultsView.swift in Sources */,
+				7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */,
 				E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */,
 				7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */,
 				7EC3234729EDD15300479134 /* GameResultView.swift in Sources */,
 				436570EE29F02DC0003E6765 /* Team.swift in Sources */,
 				436570F229F02E02003E6765 /* TeamTableViewCell.swift in Sources */,
 				1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */,
+				E420454B29F03E1500697334 /* MockModel.swift in Sources */,
 				174113C029ED2E10008C8EF1 /* SceneDelegate.swift in Sources */,
 				1741140429ED688D008C8EF1 /* MainViewController.swift in Sources */,
+				E420454929EF1E7E00697334 /* LeaderBoardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

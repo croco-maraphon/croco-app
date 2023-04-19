@@ -8,7 +8,6 @@
 import UIKit
 
 final class GameResultView {
-    static let shared = GameResultView()
     
     lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()

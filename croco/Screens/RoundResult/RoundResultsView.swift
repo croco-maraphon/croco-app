@@ -8,7 +8,6 @@
 import UIKit
 
 final class RoundResultsView {
-    static let shared = RoundResultsView()
     
     lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()
@@ -130,5 +129,4 @@ final class RoundResultsView {
         
         return button
     }()
-    
 }
