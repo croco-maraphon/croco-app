@@ -76,8 +76,8 @@ extension LeaderBoardCell {
         let pointsWord = UILabel()
 
         image.image = teamModel.image
-        name.text = teamModel.name
-        points.text = String(teamModel.points)
+        name.text = teamModel.name.text
+        points.text = teamModel.scoreNumber.text
         pointsWord.text = teamModel.pointsWord
 
         name.font = UIFont.systemFont(

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct TeamModel {
+struct TeamModelMock {
     var name: String
     var points: Int
     let image: UIImage

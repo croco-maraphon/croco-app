@@ -255,8 +255,8 @@
 				E420454A29F03E1500697334 /* MockModel.swift */,
 			);
 			path = LeaderBoard;
-      sourceTree = "<group>";
-    }
+            sourceTree = "<group>";
+        };
 		7ED2E8AF29EF0B8D008DCF53 /* Model */ = {
 			isa = PBXGroup;
 			children = (
