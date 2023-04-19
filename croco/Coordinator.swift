@@ -24,6 +24,7 @@ enum Screens {
     case Categories
     case Game
     case Results
+    case LeaderBoard
     
     var controller: UIViewController {
         switch self {
@@ -39,6 +40,8 @@ enum Screens {
             return GameViewController()
         case .Results:
             return GameResultViewController()
+        case .LeaderBoard:
+            return LeaderBoardViewController()
         }
     }
 }
