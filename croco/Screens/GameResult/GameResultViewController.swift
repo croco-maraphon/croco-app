@@ -12,13 +12,23 @@ import SnapKit
 
 class GameResultViewController: UIViewController {
     
-    let resultView = GameResultView.shared
+    let resultView = GameResultView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
         setConstraints()
+        setTargets()
+    }
+    private func setTargets() {
+        resultView.resetButton.addTarget(self, action: #selector(switchToTeamsViewController), for: .touchUpInside)
+    }
+    
+    @objc private func switchToTeamsViewController() {
+        let viewController = TeamsViewController()
+        viewController.modalPresentationStyle = .overFullScreen
         
+        present(viewController, animated: true)
     }
 }
 
