@@ -104,7 +104,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func navigateToRules() {
-        MainCoordinator.shared.push(.Results)
+        MainCoordinator.shared.push(.Rules)
     }
     
     @objc func navigateToTeams() {
