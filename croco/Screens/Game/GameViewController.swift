@@ -83,16 +83,16 @@ class GameViewController: UIViewController {
         gameView.correctButton.addTarget(self, action: #selector(navigateToCorrect), for: .touchUpInside)
     }
     
+    func reset() {
+        print("reset round")
+    }
+    
     @objc func navigateToCorrect() {
         stopSound()
         timer.invalidate()
         audioService.makeSound(sound: .correctAnswer)
-        
-        let viewController = RoundResultsViewController()
-        viewController.modalPresentationStyle = .overFullScreen
-        viewController.isWinRound = true
-        
-        present(viewController, animated: true)
+                
+        MainCoordinator.shared.push(.RoundResults(correct: true, reset: self.reset))
     }
     
     // переход на WrongViewController
@@ -105,11 +105,7 @@ class GameViewController: UIViewController {
         timer.invalidate()
         audioService.makeSound(sound: .wrongAnswer)
         
-        let viewController = RoundResultsViewController()
-        viewController.modalPresentationStyle = .overFullScreen
-        viewController.isWinRound = false
-        
-        present(viewController, animated: true)
+        MainCoordinator.shared.push(.RoundResults(correct: false, reset: self.reset))
         
     }
     
@@ -141,6 +137,6 @@ class GameViewController: UIViewController {
     }
     
     func navigateToMain() {
-        MainCoordinator.shared.start()
+        MainCoordinator.shared.popToRoot()
     }
 }

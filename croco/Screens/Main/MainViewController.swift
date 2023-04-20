@@ -189,7 +189,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func navigateToResult() {
-        MainCoordinator.shared.push(.Results)
+        MainCoordinator.shared.push(.LeaderBoard)
     }
     
 }

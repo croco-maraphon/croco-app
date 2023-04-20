@@ -18,6 +18,7 @@ class RoundResultsViewController: UIViewController {
     var maxCurrentScore = 0
     
     var isWinRound: Bool?
+    var reset: (() -> ())?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,18 +80,13 @@ class RoundResultsViewController: UIViewController {
     
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
-        let viewController = GameViewController()
-        viewController.modalPresentationStyle = .overFullScreen
-        
-        present(viewController, animated: true)
+        reset?()
+        MainCoordinator.shared.pop()
     }
 
     @objc private func switchToGameResultViewController() {
         audioService.player?.stop()
-        let viewController = GameResultViewController()
-        viewController.modalPresentationStyle = .overFullScreen
-        
-        present(viewController, animated: true)
+        MainCoordinator.shared.push(.Results)
     }
 }
 

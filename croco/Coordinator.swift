@@ -24,6 +24,7 @@ enum Screens {
     case Categories
     case Game
     case Results
+    case RoundResults(correct: Bool, reset: () -> ())
     case LeaderBoard
     
     var controller: UIViewController {
@@ -40,6 +41,11 @@ enum Screens {
             return GameViewController()
         case .Results:
             return GameResultViewController()
+        case .RoundResults(let correct, let reset):
+            let controller = RoundResultsViewController()
+            controller.isWinRound = correct
+            controller.reset = reset
+            return controller
         case .LeaderBoard:
             return LeaderBoardViewController()
         }
@@ -63,5 +69,9 @@ class MainCoordinator: Coordinator {
             
     func pop() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func popToRoot() {
+        navigationController.popToRootViewController(animated: true)
     }
 }
