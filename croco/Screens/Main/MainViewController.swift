@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     
     var startGameButton = UIButton()
     var rulesButton = UIButton()
+    var resultButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class MainViewController: UIViewController {
         addGrass()
         setupGameButton()
         setupRulesButton()
+        setupResultButton()
     }
     
     func setupViews() {
@@ -111,7 +113,7 @@ class MainViewController: UIViewController {
             ofSize: 20,
             weight: .regular
         )
-        startGameButton.backgroundColor = .systemBlue
+        startGameButton.backgroundColor = UIColor(red: 0.45, green: 0.65, blue: 0.19, alpha: 1.0)
         
         block2.addSubview(startGameButton)
         
@@ -132,7 +134,7 @@ class MainViewController: UIViewController {
             ofSize: 17,
             weight: .regular
         )
-        rulesButton.backgroundColor = .systemBlue
+        rulesButton.backgroundColor = UIColor(red: 0.45, green: 0.65, blue: 0.19, alpha: 1.0)
         
         block2.addSubview(rulesButton)
         
@@ -143,6 +145,23 @@ class MainViewController: UIViewController {
         }
         
         rulesButton.addTarget(self, action: #selector(navigateToRules), for: .touchUpInside)
+    }
+    
+    func setupResultButton(){
+        resultButton.setTitle("Результат", for: .normal)
+        resultButton.layer.masksToBounds = true
+        resultButton.layer.cornerRadius = 10
+        resultButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        resultButton.backgroundColor = UIColor(red: 250/255, green: 120/255, blue: 0, alpha: 1)
+        block2.addSubview(resultButton)
+        
+        resultButton.snp.makeConstraints { make in
+            make.top.equalTo(rulesButton.snp.bottom).offset(20)
+            make.left.right.equalTo(view).inset(80)
+            make.height.equalTo(60)
+        }
+        
+        resultButton.addTarget(self, action: #selector(navigateToResult), for: .touchUpInside)
     }
         
     public func setBackground() {
@@ -167,6 +186,10 @@ class MainViewController: UIViewController {
     
     @objc func navigateToTeams() {
         MainCoordinator.shared.push(.Teams)
+    }
+    
+    @objc func navigateToResult() {
+        MainCoordinator.shared.push(.Results)
     }
     
 }
