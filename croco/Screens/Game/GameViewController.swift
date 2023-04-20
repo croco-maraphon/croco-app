@@ -19,6 +19,16 @@ class GameViewController: UIViewController {
     
     var timer = Timer()
     var secondRemaining = 60
+    var teams = [TeamModel]()
+    
+    init(teams: [TeamModel]) {
+        self.teams = teams
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
