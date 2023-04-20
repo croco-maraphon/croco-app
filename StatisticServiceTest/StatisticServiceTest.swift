@@ -73,8 +73,6 @@ final class StatisticServiceTest: XCTestCase {
         statisticService.rename(team: secondGame[1], newName: "TeamFive")
         let keys = userdefaults.dictionaryRepresentation().keys
 
-
-
         XCTAssertTrue(keys.contains(prefix + "TeamFive"), "Ключ 'TeamFive' не найден в UserDefaults")
     }
 
