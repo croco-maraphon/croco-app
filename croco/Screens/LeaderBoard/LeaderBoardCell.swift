@@ -55,14 +55,16 @@ extension LeaderBoardCell {
                 constant: 12
             ),
             cellView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor
+                equalTo: contentView.trailingAnchor,
+                constant: -12
             ),
             cellView.bottomAnchor.constraint(
                 equalTo: contentView.bottomAnchor,
                 constant: -13
             ),
             cellView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor
+                equalTo: contentView.leadingAnchor,
+                constant: 12
             )
         ])
     }
