@@ -7,70 +7,57 @@
 
 import Foundation
 
+struct Team: Codable, Equatable {
+    var id = UUID().uuidString
+    var teamName: String
+    var teamImage: String
+    var teamScore: Int
+}
+
 final class StatisticService {
     private let userDefaults = UserDefaults.standard
-    private let prefix = "croco "
+    private let key = "teams"
 
-    public func getLeaderboard() -> [String: Int] {
-        var leaderboard: [String: Int] = [:]
-        let dictionary = userDefaults.dictionaryRepresentation()
+    private var teams: [Team]
 
-        for key in dictionary.keys {
-            if key.hasPrefix(prefix) {
-                if let value = dictionary[key] as? Int {
-                    let index = String(key.dropFirst(prefix.count))
-                    leaderboard[index] = value
-                }
-            }
-        }
-        return leaderboard
-    }
-
-    public func sendGameResult(teams: [TeamModel]) {
-        let leaderboard = getLeaderboard()
-
-        for team in teams {
-            if leaderboard.keys.contains(team.teamName) {
-                let score = team.teamScore + userDefaults.integer(
-                    forKey: prefix + team.teamName
-                )
-                userDefaults.set(
-                    score,
-                    forKey: prefix + team.teamName
-                )
-            } else {
-                userDefaults.set(
-                    team.teamScore,
-                    forKey: prefix + team.teamName
-                )
-            }
-        }
-    }
-
-    public func restore() {
-        let keys = userDefaults.dictionaryRepresentation().keys
-
-        for key in keys {
-            if key.hasPrefix(prefix) {
-                userDefaults.removeObject(forKey: key)
-            }
-        }
-        userDefaults.synchronize()
-    }
-
-    public func rename(team: TeamModel, newName: String) {
-        let leaderboard = getLeaderboard()
-
-        if leaderboard.keys.contains(team.teamName) {
-            let score = userDefaults.integer(
-                forKey: prefix + team.teamName
-            )
-            userDefaults.removeObject(
-                forKey: prefix + team.teamName
-            )
-            userDefaults.set(score, forKey: prefix + newName)
+    init() {
+        if let teams = userDefaults.object(forKey: key) as? [Team] {
+            self.teams = teams
         } else {
-            fatalError("Team not found")
+            teams = []
         }
+    }
+
+    public func createTeam(_ team: Team) {
+        if self.teams.first(where: { $0 == team }) == nil {
+            self.teams.append(team)
+            userDefaults.set(self.teams, forKey: key)
+        }
+    }
+
+    public func getLeaderboard() -> [Team] {
+        self.teams
+    }
+
+    public func updateLeaderboard(teams: [Team]) {
+        for index in 0..<self.teams.count {
+            if let team = teams.first(where: { $0.id == self.teams[index].id }) {
+                self.teams[index].teamScore += team.teamScore
+            }
+        }
+        userDefaults.set(self.teams, forKey: key)
+    }
+
+    public func updateTeamName(team: Team, newName: String) {
+        if let index = self.teams.firstIndex(where: { $0.id == team.id }) {
+            self.teams[index].teamName = newName
+            userDefaults.set(self.teams, forKey: key)
+        } else {
+            fatalError("Team to rename not found")
+        }
+    }
+
+    public func deleteTeams() {
+        userDefaults.removeObject(forKey: key)
     }
 }
