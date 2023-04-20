@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Team: Codable, Equatable {
+struct Team: Codable, Equatable, Identifiable {
     var id = UUID().uuidString
     var teamName: String
     var teamImage: String
@@ -21,7 +21,8 @@ final class StatisticService {
     private var teams: [Team]
 
     init() {
-        if let teams = userDefaults.object(forKey: key) as? [Team] {
+        if let data = userDefaults.object(forKey: key) as? Data,
+           let teams = try? JSONDecoder().decode([Team].self,from: data) {
             self.teams = teams
         } else {
             teams = []
@@ -31,7 +32,7 @@ final class StatisticService {
     public func createTeam(_ team: Team) {
         if self.teams.first(where: { $0 == team }) == nil {
             self.teams.append(team)
-            userDefaults.set(self.teams, forKey: key)
+            setData()
         }
     }
 
@@ -39,19 +40,20 @@ final class StatisticService {
         self.teams
     }
 
-    public func updateLeaderboard(teams: [Team]) {
+    public func updateLeaderboard(gameResult: [Team]) {
         for index in 0..<self.teams.count {
-            if let team = teams.first(where: { $0.id == self.teams[index].id }) {
+            if let team = gameResult.first(where: { $0.id == self.teams[index].id }) {
                 self.teams[index].teamScore += team.teamScore
             }
         }
-        userDefaults.set(self.teams, forKey: key)
+        setData()
     }
 
     public func updateTeamName(team: Team, newName: String) {
         if let index = self.teams.firstIndex(where: { $0.id == team.id }) {
             self.teams[index].teamName = newName
-            userDefaults.set(self.teams, forKey: key)
+
+            setData()
         } else {
             fatalError("Team to rename not found")
         }
@@ -59,5 +61,11 @@ final class StatisticService {
 
     public func deleteTeams() {
         userDefaults.removeObject(forKey: key)
+    }
+
+    private func setData() {
+        if let encode = try? JSONEncoder().encode(self.teams) {
+            userDefaults.set(encode, forKey: key)
+        }
     }
 }
