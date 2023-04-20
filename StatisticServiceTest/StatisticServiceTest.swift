@@ -16,26 +16,26 @@ final class StatisticServiceTest: XCTestCase {
     let firstGame: [TeamModel] = [
         .init(
             teamName: "TeamOne",
-            teamImage: UIImage(),
+            teamImage: "",
             teamScore: 1),
         .init(
             teamName: "TeamTwo",
-            teamImage: UIImage(),
+            teamImage: "",
             teamScore: 2),
         .init(
             teamName: "TeamThree",
-            teamImage: UIImage(),
+            teamImage: "",
             teamScore: 3),
     ]
 
     let secondGame: [TeamModel] = [
         .init(
             teamName: "TeamOne",
-            teamImage: UIImage(),
+            teamImage: "",
             teamScore: 5),
         .init(
             teamName: "TeamFour",
-            teamImage: UIImage(),
+            teamImage: "",
             teamScore: 4)
     ]
     
@@ -61,6 +61,7 @@ final class StatisticServiceTest: XCTestCase {
     }
 
     func testGetLeaderBoard() throws {
+        statisticService.restore()
         statisticService.sendGameResult(teams: firstGame)
         statisticService.sendGameResult(teams: secondGame)
         let dictionary = statisticService.getLeaderboard()
