@@ -12,45 +12,49 @@ class TeamTableViewCell: UITableViewCell {
     
     static let cellIdentifier = String(describing: UITableViewCell.self)
     
-    var team: Team? {
+    var team: TeamModel? {
         didSet {
             guard let teamItem = team else {return}
-            if let emoji = teamItem.emoji {
-                profileImageView.image = emoji
-            }
+
+            let emoji = teamItem.teamImage
+            profileLabel.text = emoji
             
-            if let name = teamItem.name {
-                nameLabel.text = "\(name)"
-            }
-            
-            if let result = teamItem.result {
-                resultLabel.text = "\(result)"
-            }
+            let name = teamItem.teamName
+            nameLabel.text = "\(name)"
         }
     }
     
-    private let profileImageView: UIImageView = {
+    private let cellBackgroundImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 28
+        image.backgroundColor = .white
+        image.layer.cornerRadius = 10
         image.clipsToBounds = true
         return image
     }()
     
-    private let nameLabel: UILabel = {
+    private let profileLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 56)
+        label.layer.cornerRadius = 28
+        label.layer.masksToBounds = true
         return label
     }()
     
-    private let resultLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let crossImageView: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.backgroundColor = .clear
+        image.clipsToBounds = true
+        return image
     }()
     
     // MARK: - Initializers
@@ -67,31 +71,40 @@ class TeamTableViewCell: UITableViewCell {
     
     // MARK: - Private Methods
     private func configureCell() {
-        backgroundColor = .white
+        backgroundColor = .clear
     }
     
     private func addViews() {
-        contentView.addSubview(profileImageView)
+        contentView.addSubview(cellBackgroundImageView)
+        contentView.addSubview(profileLabel)
         contentView.addSubview(nameLabel)
-        contentView.addSubview(resultLabel)
+        contentView.addSubview(crossImageView)
     }
     
     private func addConstraints() {
-        profileImageView.snp.makeConstraints { make in
+        cellBackgroundImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().inset(14)
+            make.trailing.equalToSuperview().inset(10)
+            make.height.equalTo(96)
+        }
+        
+        profileLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(cellBackgroundImageView).inset(17)
             make.width.height.equalTo(56)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(profileImageView.snp.trailing).offset(20)            
+            make.leading.equalTo(profileLabel.snp.trailing).offset(34)
+            make.trailing.equalTo(crossImageView.snp.leading).inset(5)
         }
         
-        resultLabel.snp.makeConstraints { make in
+        crossImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-10)
-            make.width.height.equalTo(20)
+            make.trailing.equalToSuperview().inset(17)
+            make.width.height.equalTo(62)
         }
     }
 }

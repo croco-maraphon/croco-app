@@ -9,28 +9,20 @@ import UIKit
 import SnapKit
 
 struct TeamModel {
-    let name: UILabel
-    let image: UIImage
-    let scoreNumber: UILabel
-    let pointsWord: String
-    
-    init(teamName: UILabel, teamLogo: UIImage, totalScore: UILabel) {
-        self.name = teamName
-        self.image = teamLogo
-        self.scoreNumber = totalScore
-        pointsWord = "Очки"
+    var teamName: String
+    let teamImage: String
+    var teamScore: Int
+    let scoreWord: String = "Очки"
+
+    init(teamName: String, teamImage: String, teamScore: Int) {
+        self.teamName = teamName
+        self.teamImage = teamImage
+        self.teamScore = teamScore
     }
-    
+
     init() {
-        let name = UILabel()
-        name.text =  "Ковбои"
-        self.name = name
-        
-        let scoreNumber = UILabel()
-        scoreNumber.text =  "0"
-        self.scoreNumber = scoreNumber
-        
-        image = UIImage(named: "person") ?? UIImage()
-        pointsWord = "Очки"
+        teamName = "Ковбои"
+        teamImage = "person"
+        teamScore =  0
     }
 }

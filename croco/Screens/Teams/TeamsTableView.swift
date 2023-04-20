@@ -21,8 +21,8 @@ class TeamsTableView: UIView {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
-        tableView.separatorStyle = .singleLine
-        tableView.separatorInset.left = 0
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
         return tableView
     }()
     
@@ -72,22 +72,20 @@ class TeamsTableView: UIView {
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(0)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(addTeamButton.snp.top).offset(-18)
+            make.bottom.equalTo(addTeamButton.snp.top).inset(18)
         }
         
         addTeamButton.snp.makeConstraints { make in
             make.bottom.equalTo(playersReadyButton.snp.top).offset(-18)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(347)
+            make.leading.trailing.equalToSuperview().inset(14)
             make.height.equalTo(63)
         }
         
         playersReadyButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-43)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(347)
+            make.bottom.equalToSuperview().inset(43)
+            make.leading.trailing.equalToSuperview().inset(14)
             make.height.equalTo(63)
         }
     }
