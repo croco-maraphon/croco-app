@@ -35,12 +35,16 @@
 		43871FB129EE7D7900F57227 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43871FB029EE7D7900F57227 /* UIColor+extension.swift */; };
 		7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234329EDC87D00479134 /* UIColor + extension.swift */; };
 		7EC3234729EDD15300479134 /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3234629EDD15300479134 /* GameResultView.swift */; };
+		7EC963FB29F12E85001FBF97 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC963FA29F12E85001FBF97 /* AudioService.swift */; };
+		7EC9640529F1406F001FBF97 /* Counter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9640429F1406F001FBF97 /* Counter.mp3 */; };
+		7EC9640829F14166001FBF97 /* CorrectAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9640629F14166001FBF97 /* CorrectAnswer.mp3 */; };
+		7EC9640929F14166001FBF97 /* WrongAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9640729F14166001FBF97 /* WrongAnswer.mp3 */; };
 		7ED2E8A829EE876E008DCF53 /* RoundResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */; };
+		7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */; };
 		E420454329EF18B300697334 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454229EF18B300697334 /* LeaderBoardViewController.swift */; };
 		E420454729EF1AE800697334 /* LeaderBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E420454629EF1AE800697334 /* LeaderBoardViewController.xib */; };
 		E420454929EF1E7E00697334 /* LeaderBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454829EF1E7E00697334 /* LeaderBoardCell.swift */; };
 		E420454B29F03E1500697334 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454A29F03E1500697334 /* MockModel.swift */; };
-		7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */; };
 		E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */; };
 		E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */; };
 		E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192229EED660009D8D75 /* CategoriesFactory.swift */; };
@@ -76,13 +80,17 @@
 		43871FB029EE7D7900F57227 /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		7EC3234329EDC87D00479134 /* UIColor + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + extension.swift"; sourceTree = "<group>"; };
 		7EC3234629EDD15300479134 /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
+		7EC963FA29F12E85001FBF97 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		7EC9640429F1406F001FBF97 /* Counter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Counter.mp3; sourceTree = "<group>"; };
+		7EC9640629F14166001FBF97 /* CorrectAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CorrectAnswer.mp3; sourceTree = "<group>"; };
+		7EC9640729F14166001FBF97 /* WrongAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WrongAnswer.mp3; sourceTree = "<group>"; };
 		7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsViewController.swift; sourceTree = "<group>"; };
 		7ED2E8A929EE8777008DCF53 /* RoundResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsView.swift; sourceTree = "<group>"; };
+		7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		E420454229EF18B300697334 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		E420454629EF1AE800697334 /* LeaderBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderBoardViewController.xib; sourceTree = "<group>"; };
 		E420454829EF1E7E00697334 /* LeaderBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardCell.swift; sourceTree = "<group>"; };
 		E420454A29F03E1500697334 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
-		7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		E4EE192229EED660009D8D75 /* CategoriesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFactory.swift; sourceTree = "<group>"; };
@@ -154,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				7EC3234529EDC88000479134 /* Extensions */,
+				7EC963FC29F12F94001FBF97 /* AudioService */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -237,6 +246,25 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7EC963FC29F12F94001FBF97 /* AudioService */ = {
+			isa = PBXGroup;
+			children = (
+				7EC963FA29F12E85001FBF97 /* AudioService.swift */,
+				7EC9640329F130FD001FBF97 /* Sounds */,
+			);
+			path = AudioService;
+			sourceTree = "<group>";
+		};
+		7EC9640329F130FD001FBF97 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				7EC9640429F1406F001FBF97 /* Counter.mp3 */,
+				7EC9640629F14166001FBF97 /* CorrectAnswer.mp3 */,
+				7EC9640729F14166001FBF97 /* WrongAnswer.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		7ED2E8A629EE8759008DCF53 /* RoundResult */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +272,14 @@
 				7ED2E8A929EE8777008DCF53 /* RoundResultsView.swift */,
 			);
 			path = RoundResult;
+			sourceTree = "<group>";
+		};
+		7ED2E8AF29EF0B8D008DCF53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E420454129EF189F00697334 /* LeaderBoard */ = {
@@ -255,15 +291,6 @@
 				E420454A29F03E1500697334 /* MockModel.swift */,
 			);
 			path = LeaderBoard;
-            sourceTree = "<group>";
-        };
-		7ED2E8AF29EF0B8D008DCF53 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */,
-			);
-			path = Model;
-
 			sourceTree = "<group>";
 		};
 		E4EFCAD729EDD4FE005B437D /* Models */ = {
@@ -344,10 +371,13 @@
 				1741140929ED68D9008C8EF1 /* CategoriesViewController.xib in Resources */,
 				1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */,
 				174113CA29ED2E11008C8EF1 /* LaunchScreen.storyboard in Resources */,
+				7EC9640529F1406F001FBF97 /* Counter.mp3 in Resources */,
+				7EC9640929F14166001FBF97 /* WrongAnswer.mp3 in Resources */,
 				E420454729EF1AE800697334 /* LeaderBoardViewController.xib in Resources */,
 				174113C729ED2E11008C8EF1 /* Assets.xcassets in Resources */,
 				1741140129ED684E008C8EF1 /* TeamsViewController.xib in Resources */,
 				174113F729ED6563008C8EF1 /* RulesViewController.xib in Resources */,
+				7EC9640829F14166001FBF97 /* CorrectAnswer.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +408,7 @@
 				17E775C129EEFBB9004F6051 /* RoundResultsView.swift in Sources */,
 				7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */,
 				E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */,
+				7EC963FB29F12E85001FBF97 /* AudioService.swift in Sources */,
 				7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */,
 				7EC3234729EDD15300479134 /* GameResultView.swift in Sources */,
 				436570EE29F02DC0003E6765 /* Team.swift in Sources */,
