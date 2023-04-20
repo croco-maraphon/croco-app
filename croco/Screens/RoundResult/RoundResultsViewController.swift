@@ -13,11 +13,11 @@ class RoundResultsViewController: UIViewController {
     
     private var roundResultView = RoundResultsView()
     var currentTeamScore: [TeamModel] = []
+    private let audioService = AudioService.shared
     
-    var isWinRound: Bool = true
     var maxCurrentScore = 0
     
-    var isWin: Bool?
+    var isWinRound: Bool?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +78,7 @@ class RoundResultsViewController: UIViewController {
     }
     
     @objc private func swithToGameViewController() {
+        audioService.player?.stop()
         let viewController = GameViewController()
         viewController.modalPresentationStyle = .overFullScreen
         
@@ -85,6 +86,7 @@ class RoundResultsViewController: UIViewController {
     }
 
     @objc private func switchToGameResultViewController() {
+        audioService.player?.stop()
         let viewController = GameResultViewController()
         viewController.modalPresentationStyle = .overFullScreen
         

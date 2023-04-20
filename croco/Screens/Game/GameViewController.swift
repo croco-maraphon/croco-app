@@ -13,12 +13,13 @@ import SnapKit
 class GameViewController: UIViewController {
     
     private let gameView = GameView()
+    private let audioService = AudioService.shared
     
     let label = CategoriesPresenter.shared.getWordToPlay()
     
     var timer = Timer()
     var secondRemaining = 60
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,7 +37,7 @@ class GameViewController: UIViewController {
         gameView.frame = view.bounds
         view.addSubview(gameView)
     }
-        
+    
     public func setGameView() {
         self.view.addSubview(gameView)
         
@@ -59,10 +60,17 @@ class GameViewController: UIViewController {
         secondRemaining -= 1
         
         if secondRemaining == 0 {
+            stopSound()
             navigateToWrong()
             return
-         }
-
+        }
+        
+        if secondRemaining == 10 {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                self.enableCounter()
+            }
+        }
+        
         if secondRemaining > 9 {
             gameView.timerLabel.text = "00:\(secondRemaining)"
         } else if secondRemaining >= 0 {
@@ -76,9 +84,13 @@ class GameViewController: UIViewController {
     }
     
     @objc func navigateToCorrect() {
+        stopSound()
+        timer.invalidate()
+        audioService.makeSound(sound: .correctAnswer)
+        
         let viewController = RoundResultsViewController()
         viewController.modalPresentationStyle = .overFullScreen
-        viewController.isWin = true
+        viewController.isWinRound = true
         
         present(viewController, animated: true)
     }
@@ -89,9 +101,13 @@ class GameViewController: UIViewController {
     }
     
     @objc func navigateToWrong() {
+        stopSound()
+        timer.invalidate()
+        audioService.makeSound(sound: .wrongAnswer)
+        
         let viewController = RoundResultsViewController()
         viewController.modalPresentationStyle = .overFullScreen
-        viewController.isWin = false
+        viewController.isWinRound = false
         
         present(viewController, animated: true)
         
@@ -114,6 +130,14 @@ class GameViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(yesAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func enableCounter() {
+        audioService.makeSound(sound: .counter)
+    }
+    
+    private func stopSound() {
+        audioService.player?.stop()
     }
     
     func navigateToMain() {
