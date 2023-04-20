@@ -72,21 +72,6 @@ class CategoriesFactory {
     ]
 
     func getRandomWord(category: CategoryModel) -> String {
-        switch category.categoryName {
-        case "Животные":
-            return categories[0].items[getRandomIndex()]
-        case "Еда":
-            return categories[1].items[getRandomIndex()]
-        case "Личности":
-            return categories[2].items[getRandomIndex()]
-        case "Хобби":
-            return categories[3].items[getRandomIndex()]
-        default:
-            return "Неверная категория"
-        }
-    }
-
-    private func getRandomIndex() -> Int {
-        return (0...9).randomElement() ?? 0
+        category.items.randomElement() ?? "Items is empty"
     }
 }

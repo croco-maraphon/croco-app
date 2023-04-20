@@ -25,6 +25,7 @@ final class CategoriesPresenter {
         guard let categoriesFactory = categoriesFactory else {
             fatalError("categoriesFactory not found")
         }
+
         return categoriesFactory.getRandomWord(
             category: category
         )
