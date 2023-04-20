@@ -11,26 +11,11 @@ import SwiftUI
 import SnapKit
 
 class CategoriesViewController: UIViewController {
-    private var animalButton: UIButton = {
-        return UIButton()
-    }()
-
-    private var foodButton: UIButton = {
-        return UIButton()
-    }()
-
-    private var personButton: UIButton = {
-        return UIButton()
-    }()
-
-    private var hobbyButton: UIButton = {
-        return UIButton()
-    }()
-
-    private var startGameButton: UIButton = {
-        return UIButton()
-    }()
-
+    private var animalButton = UIButton()
+    private var foodButton = UIButton()
+    private var personButton = UIButton()
+    private var hobbyButton = UIButton()
+    private var startGameButton = UIButton()
     private var categoriesFactory: CategoriesFactory?
     private var presenter: CategoriesPresenter = CategoriesPresenter.shared
 
