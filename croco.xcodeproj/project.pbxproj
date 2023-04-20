@@ -27,7 +27,6 @@
 		1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741140A29ED6907008C8EF1 /* GameResultViewController.swift */; };
 		1741140D29ED6907008C8EF1 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1741140B29ED6907008C8EF1 /* ResultsViewController.xib */; };
 		17E775C129EEFBB9004F6051 /* RoundResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8A929EE8777008DCF53 /* RoundResultsView.swift */; };
-		436570EE29F02DC0003E6765 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436570ED29F02DC0003E6765 /* Team.swift */; };
 		436570F029F02DDA003E6765 /* TeamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436570EF29F02DDA003E6765 /* TeamAPI.swift */; };
 		436570F229F02E02003E6765 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436570F129F02E02003E6765 /* TeamTableViewCell.swift */; };
 		436570F629F0354E003E6765 /* TeamsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436570F529F0354E003E6765 /* TeamsTableView.swift */; };
@@ -45,7 +44,6 @@
 		E420454729EF1AE800697334 /* LeaderBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E420454629EF1AE800697334 /* LeaderBoardViewController.xib */; };
 		E420454929EF1E7E00697334 /* LeaderBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454829EF1E7E00697334 /* LeaderBoardCell.swift */; };
 		E420454B29F03E1500697334 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454A29F03E1500697334 /* MockModel.swift */; };
-		7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */; };
 		E4D0D62A29F0AD07008E8FCC /* StatisticServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D62929F0AD07008E8FCC /* StatisticServiceTest.swift */; };
 		E4E78BE729EF0FE5000254B4 /* StatisticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E78BE629EF0FE5000254B4 /* StatisticService.swift */; };
 		E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */; };
@@ -85,7 +83,6 @@
 		1741140729ED68D9008C8EF1 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		1741140A29ED6907008C8EF1 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		1741140B29ED6907008C8EF1 /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
-		436570ED29F02DC0003E6765 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		436570EF29F02DDA003E6765 /* TeamAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAPI.swift; sourceTree = "<group>"; };
 		436570F129F02E02003E6765 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		436570F529F0354E003E6765 /* TeamsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableView.swift; sourceTree = "<group>"; };
@@ -104,7 +101,6 @@
 		E420454629EF1AE800697334 /* LeaderBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderBoardViewController.xib; sourceTree = "<group>"; };
 		E420454829EF1E7E00697334 /* LeaderBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardCell.swift; sourceTree = "<group>"; };
 		E420454A29F03E1500697334 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
-		7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		E4D0D62729F0AD07008E8FCC /* StatisticServiceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StatisticServiceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4D0D62929F0AD07008E8FCC /* StatisticServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticServiceTest.swift; sourceTree = "<group>"; };
 		E4E78BE629EF0FE5000254B4 /* StatisticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticService.swift; sourceTree = "<group>"; };
@@ -204,7 +200,6 @@
 		174113DC29ED4B3B008C8EF1 /* Teams */ = {
 			isa = PBXGroup;
 			children = (
-				436570ED29F02DC0003E6765 /* Team.swift */,
 				436570EF29F02DDA003E6765 /* TeamAPI.swift */,
 				436570F129F02E02003E6765 /* TeamTableViewCell.swift */,
 				436570F529F0354E003E6765 /* TeamsTableView.swift */,
@@ -318,14 +313,6 @@
 				E420454A29F03E1500697334 /* MockModel.swift */,
 			);
 			path = LeaderBoard;
-      sourceTree = "<group>";
-    };
-		7ED2E8AF29EF0B8D008DCF53 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		E4D0D62829F0AD07008E8FCC /* StatisticServiceTest */ = {
@@ -493,7 +480,6 @@
 				7EC963FB29F12E85001FBF97 /* AudioService.swift in Sources */,
 				7EC3234429EDC87D00479134 /* UIColor + extension.swift in Sources */,
 				7EC3234729EDD15300479134 /* GameResultView.swift in Sources */,
-				436570EE29F02DC0003E6765 /* Team.swift in Sources */,
 				436570F229F02E02003E6765 /* TeamTableViewCell.swift in Sources */,
 				1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */,
 				E420454B29F03E1500697334 /* MockModel.swift in Sources */,
