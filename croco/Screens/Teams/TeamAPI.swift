@@ -10,12 +10,61 @@ import UIKit
 
 class TeamAPI {
     
-    static func getTeam() -> [Team]{
+    static func getEmoji() -> [String] {
+        var emojies = [String]()
+                
+        while emojies.count < 4 {
+            let randomElememnt = (0x1F300...0x1F3F0).randomElement()!
+            guard let scalar = UnicodeScalar(randomElememnt) else { return ["❓", "❓"] }
+            if !emojies.contains("\(scalar)") {
+                emojies.append("\(scalar)")
+            }
+        }
+        return emojies
+    }
+    
+    static func getName() -> [String] {
+        let names = [
+            "Тигры", "Монстры", "Победители", "Зловещие", "Убийцы кроликов", "Мы-машина", "Непоколебимые",
+            "Голодные звери", "Жаждущие крови", "Черная банда", "Безумные волки", "Дикие львы",
+            "Монстры с клыками", "Древние зомби", "Машины-убийцы", "Мамонты", "Буйволы", "Беглые преступники",
+            "Трансформеры", "Каменьщики", "Бездушные", "Фантастическая четверка", "Черепашки Ниндзя",
+            "Халк и его команда", "Дубовые", "Гном-Гномычи", "Гиганты", "Гуливеры", "Беспощадные",
+            "Большие и страшные", "Бандиты", "Без компромиссов", "Кладовщики", "Гробовщики", "Летающие воины",
+            "Витязи", "Киборги", "Команда Кусто", "Пираты", "Беспредельщики", "Злые", "Безумные змеи", "Серые львы",
+            "Стрелочники", "Оружейная банда", "Танкисты", "Громкие", "Молниеносцы", "Неробкие", "Подводники"
+        ]
+        
+        var teamNames = [String]()
+        
+        while teamNames.count < 4 {
+            guard let name = names.randomElement() else { return ["Команда 1", "Команда 2"] }
+            if !teamNames.contains(name) {
+                teamNames.append(name)
+            }
+        }
+        return teamNames
+    }
+    
+    static func getTeams() -> [TeamModel] {
+        let teamName = getName()
+        let teamImage = getEmoji()
+        
         let teams = [
-            Team(name: "Ковбои", emoji: UIImage(named: "Cowboy"), result: "20"),
-            Team(name: "Стройняшки", emoji: UIImage(named: "Burger"), result: "15"),
-            Team(name: "Красотки", emoji: UIImage(named: "Nails"), result: "10")
+            TeamModel(teamName: teamName[0], teamImage: teamImage[0], teamScore: 0),
+            TeamModel(teamName: teamName[1], teamImage: teamImage[1], teamScore: 0)
         ]
         return teams
+    }
+    
+    static func addTeam() -> [TeamModel] {
+        let teamName = getName()
+        let teamImage = getEmoji()
+        
+        let newTeams = [
+            TeamModel(teamName: teamName[0], teamImage: teamImage[0], teamScore: 0),
+            TeamModel(teamName: teamName[1], teamImage: teamImage[1], teamScore: 0)
+        ]
+        return newTeams
     }
 }
