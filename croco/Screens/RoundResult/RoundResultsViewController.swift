@@ -43,7 +43,7 @@ class RoundResultsViewController: UIViewController {
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "74A730")
             roundResultView.topTeamLabel.text = currentCommand?.teamName
             roundResultView.topTeamImageLabel.text = currentCommand?.teamImage
-            roundResultView.winOrLooseLabel.text = "Поздравляем"
+            roundResultView.winOrLooseLabel.text = "Поздравляем!"
             roundResultView.getPointOrNotLabel.text = "Вы получаете"
             roundResultView.pointsImage.image = UIImage(named: "Vector")
             addScore(result: result)
@@ -83,6 +83,11 @@ class RoundResultsViewController: UIViewController {
     private func checkCurrentScore(_ score: Int) {
 //        if team.teamScore == 5 {
         if score == 5 {
+            roundResultView.getPointOrNotLabel.text = "Вы выйграли!"
+            roundResultView.getPointOrNotLabel.font = UIFont.boldSystemFont(ofSize: 16)
+            roundResultView.topScoreLabel.text = ""
+            roundResultView.bottomScoreLabel.text = ""
+            roundResultView.nextTurnLabel.text = "Вы можете посмотреть результаты"
             roundResultView.nextTurnButton.setTitle("Посмотреть результаты", for: .normal)
             roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
                                                      for: .touchUpInside)

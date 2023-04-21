@@ -119,7 +119,6 @@ final class RoundResultsView {
     
     lazy var nextTurnButton: UIButton = {
         var button = UIButton(type: .system)
-        button.setTitle("Передать ход", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(hexString: "74A730")
