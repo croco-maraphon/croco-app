@@ -10,7 +10,7 @@ import XCTest
 
 final class StatisticServiceTests: XCTestCase {
     enum Keys: String {
-        case leaderboard, lastGameTeams
+        case teams, leaderboard
     }
 
     private let userDefaults = UserDefaults.standard
@@ -42,63 +42,15 @@ final class StatisticServiceTests: XCTestCase {
            let team = getDecodedData(data) {
             XCTAssertTrue(team.count == 2)
         }
-        statistic.deleteTeams()
-    }
 
-    func testGetLeaderboard() throws {
-        statistic.createTeam(teamOne)
-        statistic.createTeam(teamTwo)
-
-        if let data = getData(key: Keys.leaderboard),
+        if let data = getData(key: Keys.teams),
            let team = getDecodedData(data) {
             XCTAssertTrue(team.count == 2)
         }
-        statistic.deleteTeams()
+        restore()
     }
 
-    func testUpdateLeaderboard() throws {
-        statistic.createTeam(teamOne)
-        statistic.createTeam(teamTwo)
-
-        var gameResult: [Team] = [teamOne, teamTwo]
-        gameResult[0].teamScore = 1
-        gameResult[1].teamScore = 2
-
-        statistic.updateLeaderboard(gameResult: gameResult)
-
-        if let data = getData(key: Keys.leaderboard),
-           let team = getDecodedData(data) {
-            XCTAssertEqual(team[0].teamScore, 2)
-            XCTAssertEqual(team[1].teamScore, 4)
-        }
-        statistic.deleteTeams()
-    }
-
-    func testUpdateTeamName() throws {
-        statistic.createTeam(teamOne)
-        statistic.createTeam(teamTwo)
-        let newName = "TeamZero"
-
-        statistic.updateTeamName(team: teamOne, newName: newName)
-
-        if let data = getData(key: Keys.leaderboard),
-           let team = getDecodedData(data) {
-            XCTAssertEqual(team[0].teamName, newName)
-        }
-        statistic.deleteTeams()
-    }
-
-    func testDeleteTeams() throws {
-        statistic.createTeam(teamOne)
-        statistic.createTeam(teamTwo)
-
-        statistic.deleteTeams()
-
-        let data = getData(key: Keys.leaderboard)
-        XCTAssertNil(data)
-    }
-
-    func testGetLastGameTeams() throws {
+    func testGetTeams() throws {
         statistic.createTeam(teamOne)
         statistic.createTeam(teamTwo)
 
@@ -117,12 +69,84 @@ final class StatisticServiceTests: XCTestCase {
         secondGameResult[1].teamScore = 4
         statistic.updateLeaderboard(gameResult: secondGameResult)
 
-        if let data = getData(key: Keys.lastGameTeams),
+        if let data = getData(key: Keys.teams),
            let team = getDecodedData(data) {
             XCTAssertNil(team.first(where: { $0.id == teamTwo.id }))
         }
-        statistic.deleteTeams()
+        restore()
 
+    }
+
+    func testGetLeaderboard() throws {
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+
+        if let data = getData(key: Keys.leaderboard),
+           let team = getDecodedData(data) {
+            XCTAssertTrue(team.count == 2)
+        }
+        restore()
+    }
+
+    func testUpdateLeaderboard() throws {
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+
+        var gameResult: [Team] = [teamOne, teamTwo]
+        gameResult[0].teamScore = 1
+        gameResult[1].teamScore = 2
+
+        statistic.updateLeaderboard(gameResult: gameResult)
+
+        if let data = getData(key: Keys.leaderboard),
+           let team = getDecodedData(data) {
+            XCTAssertEqual(team[0].teamScore, 2)
+            XCTAssertEqual(team[1].teamScore, 4)
+        }
+        restore()
+    }
+
+    func testUpdateTeamName() throws {
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+        let newName = "TeamZero"
+
+        statistic.updateTeamName(team: teamOne, newName: newName)
+
+        if let data = getData(key: Keys.leaderboard),
+           let team = getDecodedData(data) {
+            XCTAssertEqual(team[0].teamName, newName)
+        }
+        restore()
+    }
+
+    func testDeleteTeam() throws {
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+
+        statistic.deleteTeam(teamTwo)
+
+        if let data = getData(key: Keys.teams),
+           let team = getDecodedData(data) {
+            XCTAssertNil(team.first(where: { $0 == teamTwo }))
+            XCTAssertNotNil(team.first(where: { $0 == teamOne }))
+        }
+
+        if let data = getData(key: Keys.leaderboard),
+           let team = getDecodedData(data) {
+            XCTAssertTrue(team.count == 2)
+        }
+        restore()
+    }
+
+    func testRestoreLeaderboard() throws {
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+
+        statistic.restoreLeaderboard()
+
+        let data = getData(key: Keys.leaderboard)
+        XCTAssertNil(data)
     }
 
     private func getData(key: Keys) -> Data? {
@@ -132,5 +156,10 @@ final class StatisticServiceTests: XCTestCase {
     private func getDecodedData(_ data: Data) -> [Team]? {
         let team = try? JSONDecoder().decode([Team].self, from: data)
         return team
+    }
+
+    private func restore() {
+        userDefaults.removeObject(forKey: Keys.teams.rawValue)
+        userDefaults.removeObject(forKey: Keys.leaderboard.rawValue)
     }
 }

@@ -16,35 +16,74 @@ struct Team: Codable, Equatable, Identifiable {
 
 final class StatisticService {
     enum Keys: String {
-        case leaderboard, lastGameTeams
+        case teams, leaderboard
     }
 
     private let userDefaults = UserDefaults.standard
 
-    private var teams: [Team]
-
-    init() {
-        if let data = userDefaults.object(forKey: Keys.leaderboard.rawValue) as? Data,
+    private var teams: [Team] = {
+        if let data = UserDefaults.standard.object(forKey: Keys.teams.rawValue) as? Data,
            let teams = try? JSONDecoder().decode([Team].self,from: data) {
-            self.teams = teams
+            return teams
         } else {
-            teams = []
+            return []
         }
-    }
+    }()
+
+    private var leaderboard: [Team] = {
+        if let data = UserDefaults.standard.object(forKey: Keys.leaderboard.rawValue) as? Data,
+           let leaderboard = try? JSONDecoder().decode([Team].self,from: data) {
+            return leaderboard
+        } else {
+            return []
+        }
+    }()
 
     public func createTeam(_ team: Team) {
-        if self.teams.first(where: { $0 == team }) == nil {
-            self.teams.append(team)
-            setData(teams: self.teams, key: Keys.leaderboard)
-        }
+        addTeam(team, to: &teams, for: Keys.teams)
+        addTeam(team, to: &leaderboard, for: Keys.leaderboard)
+    }
+
+    public func getTeams() -> [Team] {
+        getData(key: Keys.teams)
     }
 
     public func getLeaderboard() -> [Team] {
-        self.teams
+        getData(key: Keys.leaderboard)
     }
 
-    public func getLastGameTeams() -> [Team] {
-        if let data = userDefaults.object(forKey: Keys.lastGameTeams.rawValue) as? Data,
+    public func updateLeaderboard(gameResult: [Team]) {
+        for index in 0..<leaderboard.count {
+            if let team = gameResult.first(where: { $0.id == leaderboard[index].id }) {
+                leaderboard[index].teamScore += team.teamScore
+            }
+        }
+        setData(teams: leaderboard, key: Keys.leaderboard)
+        setData(teams: gameResult, key: Keys.teams)
+    }
+
+    public func updateTeamName(team: Team, newName: String) {
+        updateTeam(team, newName: newName, to: &teams, for: Keys.teams)
+        updateTeam(team, newName: newName, to: &leaderboard, for: Keys.leaderboard)
+    }
+
+    public func deleteTeam(_ team: Team) {
+        teams.removeAll(where: { $0.id == team.id })
+        setData(teams: teams, key: Keys.teams)
+    }
+
+    public func restoreLeaderboard() {
+        userDefaults.removeObject(forKey: Keys.leaderboard.rawValue)
+    }
+
+    private func setData(teams: [Team], key: Keys) {
+        if let encode = try? JSONEncoder().encode(teams) {
+            userDefaults.set(encode, forKey: key.rawValue)
+        }
+    }
+
+    private func getData(key: Keys) -> [Team] {
+        if let data = userDefaults.object(forKey: key.rawValue) as? Data,
            let teams = try? JSONDecoder().decode([Team].self, from: data) {
             return teams
         } else {
@@ -52,33 +91,17 @@ final class StatisticService {
         }
     }
 
-    public func updateLeaderboard(gameResult: [Team]) {
-        for index in 0..<self.teams.count {
-            if let team = gameResult.first(where: { $0.id == self.teams[index].id }) {
-                self.teams[index].teamScore += team.teamScore
-            }
-        }
-        setData(teams: self.teams, key: Keys.leaderboard)
-        setData(teams: gameResult, key: Keys.lastGameTeams)
-    }
-
-    public func updateTeamName(team: Team, newName: String) {
-        if let index = self.teams.firstIndex(where: { $0.id == team.id }) {
-            self.teams[index].teamName = newName
-
-            setData(teams: self.teams, key: Keys.leaderboard)
-        } else {
-            fatalError("Team to rename not found")
+    private func addTeam(_ team: Team, to teams: inout [Team], for key: Keys) {
+        if teams.first(where: { $0 == team }) == nil {
+            teams.append(team)
+            setData(teams: teams, key: key)
         }
     }
 
-    public func deleteTeams() {
-        userDefaults.removeObject(forKey: Keys.leaderboard.rawValue)
-    }
-
-    private func setData(teams: [Team], key: Keys) {
-        if let encode = try? JSONEncoder().encode(teams) {
-            userDefaults.set(encode, forKey: key.rawValue)
+    private func updateTeam(_ team: Team, newName: String, to teams: inout [Team], for key: Keys) {
+        if let index = teams.firstIndex(where: { $0.id == team.id }) {
+            teams[index].teamName = newName
+            setData(teams: teams, key: key)
         }
     }
 }
