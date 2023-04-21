@@ -9,8 +9,11 @@ import XCTest
 @testable import croco
 
 final class StatisticServiceTests: XCTestCase {
+    enum Keys: String {
+        case leaderboard, lastGameTeams
+    }
+
     private let userDefaults = UserDefaults.standard
-    private let key = "teams"
     private let statistic = StatisticService()
 
     private let teamOne = Team(
@@ -28,14 +31,14 @@ final class StatisticServiceTests: XCTestCase {
     func testCreateTeam() throws {
         statistic.createTeam(teamOne)
 
-        if let data = getData(),
+        if let data = getData(key: Keys.leaderboard),
            let team = try? JSONDecoder().decode(Team.self, from: data) {
             XCTAssertEqual(teamOne.id, team.id)
         }
 
         statistic.createTeam(teamTwo)
 
-        if let data = getData(),
+        if let data = getData(key: Keys.leaderboard),
            let team = getDecodedData(data) {
             XCTAssertTrue(team.count == 2)
         }
@@ -46,7 +49,7 @@ final class StatisticServiceTests: XCTestCase {
         statistic.createTeam(teamOne)
         statistic.createTeam(teamTwo)
 
-        if let data = getData(),
+        if let data = getData(key: Keys.leaderboard),
            let team = getDecodedData(data) {
             XCTAssertTrue(team.count == 2)
         }
@@ -63,7 +66,7 @@ final class StatisticServiceTests: XCTestCase {
 
         statistic.updateLeaderboard(gameResult: gameResult)
 
-        if let data = getData(),
+        if let data = getData(key: Keys.leaderboard),
            let team = getDecodedData(data) {
             XCTAssertEqual(team[0].teamScore, 2)
             XCTAssertEqual(team[1].teamScore, 4)
@@ -78,7 +81,7 @@ final class StatisticServiceTests: XCTestCase {
 
         statistic.updateTeamName(team: teamOne, newName: newName)
 
-        if let data = getData(),
+        if let data = getData(key: Keys.leaderboard),
            let team = getDecodedData(data) {
             XCTAssertEqual(team[0].teamName, newName)
         }
@@ -91,12 +94,39 @@ final class StatisticServiceTests: XCTestCase {
 
         statistic.deleteTeams()
 
-        let data = getData()
+        let data = getData(key: Keys.leaderboard)
         XCTAssertNil(data)
     }
 
-    private func getData() -> Data? {
-        userDefaults.object(forKey: key) as? Data
+    func testGetLastGameTeams() throws {
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+
+        var firstGameResult: [Team] = [teamOne, teamTwo]
+        firstGameResult[0].teamScore = 1
+        firstGameResult[1].teamScore = 2
+        statistic.updateLeaderboard(gameResult: firstGameResult)
+
+        let teamThree = Team(
+            teamName: "TeamThree",
+            teamImage: "",
+            teamScore: 3
+        )
+        var secondGameResult: [Team] = [teamOne, teamThree]
+        secondGameResult[0].teamScore = 5
+        secondGameResult[1].teamScore = 4
+        statistic.updateLeaderboard(gameResult: secondGameResult)
+
+        if let data = getData(key: Keys.lastGameTeams),
+           let team = getDecodedData(data) {
+            XCTAssertNil(team.first(where: { $0.id == teamTwo.id }))
+        }
+        statistic.deleteTeams()
+
+    }
+
+    private func getData(key: Keys) -> Data? {
+        userDefaults.object(forKey: key.rawValue) as? Data
     }
 
     private func getDecodedData(_ data: Data) -> [Team]? {
