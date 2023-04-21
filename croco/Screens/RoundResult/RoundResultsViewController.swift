@@ -12,10 +12,11 @@ import SnapKit
 class RoundResultsViewController: UIViewController {
     
     private var roundResultView = RoundResultsView()
-    var currentTeamScore: [TeamModel] = []
+    var currentTeamScore: [Team] = []
+    var currentCommand: [Team] = []
     private let audioService = AudioService.shared
     
-    var maxCurrentScore = 0
+    var maxCurrentScore = 5
     
     var isWinRound: Bool?
     var reset: (() -> ())?
@@ -81,7 +82,7 @@ class RoundResultsViewController: UIViewController {
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
         reset?()
-        MainCoordinator.shared.pop()
+        MainCoordinator.shared.push(.Game(teams: <#T##[Team]#>))
     }
 
     @objc private func switchToGameResultViewController() {

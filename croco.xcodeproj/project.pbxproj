@@ -38,6 +38,7 @@
 		7EC9640529F1406F001FBF97 /* Counter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9640429F1406F001FBF97 /* Counter.mp3 */; };
 		7EC9640829F14166001FBF97 /* CorrectAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9640629F14166001FBF97 /* CorrectAnswer.mp3 */; };
 		7EC9640929F14166001FBF97 /* WrongAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9640729F14166001FBF97 /* WrongAnswer.mp3 */; };
+		7EC9640F29F2A891001FBF97 /* GameResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9640E29F2A891001FBF97 /* GameResultCell.swift */; };
 		7ED2E8A829EE876E008DCF53 /* RoundResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */; };
 		7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */; };
 		E401D20929F1EDD700722FA9 /* StatisticServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401D1F729F1ED3300722FA9 /* StatisticServiceTests.swift */; };
@@ -94,6 +95,7 @@
 		7EC9640429F1406F001FBF97 /* Counter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Counter.mp3; sourceTree = "<group>"; };
 		7EC9640629F14166001FBF97 /* CorrectAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CorrectAnswer.mp3; sourceTree = "<group>"; };
 		7EC9640729F14166001FBF97 /* WrongAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WrongAnswer.mp3; sourceTree = "<group>"; };
+		7EC9640E29F2A891001FBF97 /* GameResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultCell.swift; sourceTree = "<group>"; };
 		7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsViewController.swift; sourceTree = "<group>"; };
 		7ED2E8A929EE8777008DCF53 /* RoundResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsView.swift; sourceTree = "<group>"; };
 		7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				1741140A29ED6907008C8EF1 /* GameResultViewController.swift */,
+				7EC9640E29F2A891001FBF97 /* GameResultCell.swift */,
 				7EC3234629EDD15300479134 /* GameResultView.swift */,
 				1741140B29ED6907008C8EF1 /* ResultsViewController.xib */,
 			);
@@ -464,6 +467,7 @@
 				174113D929ED344B008C8EF1 /* Coordinator.swift in Sources */,
 				E420454329EF18B300697334 /* LeaderBoardViewController.swift in Sources */,
 				43871FB129EE7D7900F57227 /* UIColor+extension.swift in Sources */,
+				7EC9640F29F2A891001FBF97 /* GameResultCell.swift in Sources */,
 				1741140C29ED6907008C8EF1 /* GameResultViewController.swift in Sources */,
 				E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */,
 				1741140029ED684E008C8EF1 /* TeamsViewController.swift in Sources */,

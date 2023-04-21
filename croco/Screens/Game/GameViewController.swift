@@ -19,9 +19,9 @@ class GameViewController: UIViewController {
     
     var timer = Timer()
     var secondRemaining = 60
-    var teams = [TeamModel]()
+    var teams = [Team]()
     
-    init(teams: [TeamModel]) {
+    init(teams: [Team]) {
         self.teams = teams
         super.init(nibName: nil, bundle: nil)
     }

@@ -10,7 +10,7 @@ import SnapKit
 
 class TeamsViewController: UIViewController {
     
-    private var team = TeamAPI.getTeams()
+    var team = TeamAPI.getTeams()
     private let newTeam = TeamAPI.addTeam()
     private let teamsTable: TeamsTableView = TeamsTableView()
     
