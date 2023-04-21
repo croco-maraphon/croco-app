@@ -50,13 +50,24 @@ class GameView: UIView {
     
     private let commentLabel: UILabel = {
         let label = UILabel()
-        label.text = "объясни с помощью жестов"
+        label.text = getAnExplanation()
         label.font = UIFont.italicSystemFont(ofSize: 20)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .center
+        
+        func getAnExplanation () -> String{
+            let explanation = ["Объясни с помощью слов.",
+                               "Объясни с помощью жестов.",
+                               "Объясни с помощью рисунка.",
+                               "Объясняй со злостью.",
+                               "Объясняй с помощью мимики.",
+                               "Объясняй вульгарно.",
+                               "Объясняй сексуально."]
+            return explanation[Int.random(in: 0..<explanation.count)]
+        }
         return label
     }()
     
