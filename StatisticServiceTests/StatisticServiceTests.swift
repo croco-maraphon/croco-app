@@ -74,7 +74,6 @@ final class StatisticServiceTests: XCTestCase {
             XCTAssertNil(team.first(where: { $0.id == teamTwo.id }))
         }
         restore()
-
     }
 
     func testGetLeaderboard() throws {
@@ -84,6 +83,19 @@ final class StatisticServiceTests: XCTestCase {
         if let data = getData(key: Keys.leaderboard),
            let team = getDecodedData(data) {
             XCTAssertTrue(team.count == 2)
+        }
+    }
+
+    func testAddScoreTo() throws {
+        restore()
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+
+        statistic.addScoreTo(team: teamOne)
+
+        if let data = getData(key: Keys.teams),
+           let team = getDecodedData(data) {
+            XCTAssertEqual(team[0].teamScore, 2)
         }
         restore()
     }
@@ -139,6 +151,20 @@ final class StatisticServiceTests: XCTestCase {
         restore()
     }
 
+    func testRestoreTeamsScore() throws {
+        statistic.createTeam(teamOne)
+        statistic.createTeam(teamTwo)
+
+        statistic.restoreTeamsScore()
+
+        if let data = getData(key: Keys.teams),
+           let team = getDecodedData(data) {
+            XCTAssertEqual(team[0].teamScore, 0)
+            XCTAssertEqual(team[1].teamScore, 0)
+        }
+        restore()
+    }
+
     func testRestoreLeaderboard() throws {
         statistic.createTeam(teamOne)
         statistic.createTeam(teamTwo)
@@ -147,6 +173,7 @@ final class StatisticServiceTests: XCTestCase {
 
         let data = getData(key: Keys.leaderboard)
         XCTAssertNil(data)
+        restore()
     }
 
     private func getData(key: Keys) -> Data? {

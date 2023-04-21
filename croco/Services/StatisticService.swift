@@ -52,6 +52,10 @@ final class StatisticService {
         getData(key: Keys.leaderboard)
     }
 
+    public func addScoreTo(team: Team) {
+        updateTeam(team, newName: nil, to: &teams, for: Keys.teams)
+    }
+
     public func updateLeaderboard(gameResult: [Team]) {
         for index in 0..<leaderboard.count {
             if let team = gameResult.first(where: { $0.id == leaderboard[index].id }) {
@@ -69,6 +73,13 @@ final class StatisticService {
 
     public func deleteTeam(_ team: Team) {
         teams.removeAll(where: { $0.id == team.id })
+        setData(teams: teams, key: Keys.teams)
+    }
+
+    public func restoreTeamsScore() {
+        for index in 0..<teams.count {
+            teams[index].teamScore = 0
+        }
         setData(teams: teams, key: Keys.teams)
     }
 
@@ -98,9 +109,13 @@ final class StatisticService {
         }
     }
 
-    private func updateTeam(_ team: Team, newName: String, to teams: inout [Team], for key: Keys) {
+    private func updateTeam(_ team: Team, newName: String?, to teams: inout [Team], for key: Keys) {
         if let index = teams.firstIndex(where: { $0.id == team.id }) {
-            teams[index].teamName = newName
+            if let newName = newName {
+                teams[index].teamName = newName
+            } else {
+                teams[index].teamScore += 1
+            }
             setData(teams: teams, key: key)
         }
     }
