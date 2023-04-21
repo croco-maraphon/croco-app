@@ -12,8 +12,11 @@ import SnapKit
 class RoundResultsViewController: UIViewController {
     
     private var roundResultView = RoundResultsView()
-    var currentTeamScore: [Team] = []
-    var currentCommand: [Team] = []
+    private var currentTeamScore: [Team] = []
+    private var playingCommands: [Team] = StatisticService().getTeams()
+    private var currentCommand: Team?
+    private var nextCommand: Team?
+    private var numberOfRound = 0
     private let audioService = AudioService.shared
     
     var maxCurrentScore = 5
@@ -23,6 +26,10 @@ class RoundResultsViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentCommand = playingCommands[numberOfRound]
+        nextRound()
+        nextCommand = playingCommands[numberOfRound + 1]
+        
         setViews()
         setConstraints()
         showResult(result: isWinRound)
@@ -34,12 +41,17 @@ class RoundResultsViewController: UIViewController {
         switch result {
         case true:
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "74A730")
+            roundResultView.topTeamLabel.text = currentCommand?.teamName
+            roundResultView.topTeamImageLabel.text = currentCommand?.teamImage
             roundResultView.winOrLooseLabel.text = "Поздравляем"
             roundResultView.getPointOrNotLabel.text = "Вы получаете"
             roundResultView.pointsImage.image = UIImage(named: "Vector")
             addScore(result: result)
+//            addScoreTo(team: currentCommand)
         case false:
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "E64546")
+            roundResultView.topTeamLabel.text = currentCommand?.teamName
+            roundResultView.topTeamImageLabel.text = currentCommand?.teamImage
             roundResultView.winOrLooseLabel.text = "УВЫ И АХ!"
             roundResultView.topTeamNumberLabel.text = "2"
             roundResultView.getPointOrNotLabel.text = "Вы не отгадали слово и не получаете очков!"
@@ -69,6 +81,7 @@ class RoundResultsViewController: UIViewController {
     }
     
     private func checkCurrentScore(_ score: Int) {
+//        if team.teamScore == 5 {
         if score == 5 {
             roundResultView.nextTurnButton.setTitle("Посмотреть результаты", for: .normal)
             roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
@@ -79,10 +92,19 @@ class RoundResultsViewController: UIViewController {
         }
     }
     
+    private func nextRound() {
+        if numberOfRound + 1 != playingCommands.count {
+            numberOfRound += 1
+        } else {
+            numberOfRound = 0
+        }
+    }
+    
+    
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
         reset?()
-        MainCoordinator.shared.push(.Game(teams: currentCommand))
+        MainCoordinator.shared.push(.Game(teams: currentTeamScore))
     }
 
     @objc private func switchToGameResultViewController() {
@@ -90,13 +112,14 @@ class RoundResultsViewController: UIViewController {
         MainCoordinator.shared.push(.Results)
     }
 }
+    
 
 extension RoundResultsViewController {
     private func setViews() {
         view.addSubview(roundResultView.backgroundImage)
         view.addSubview(roundResultView.topTeamView)
         
-        roundResultView.topTeamView.addSubview(roundResultView.topTeamImage)
+        roundResultView.topTeamView.addSubview(roundResultView.topTeamImageLabel)
         roundResultView.topTeamView.addSubview(roundResultView.topTeamLabel)
         roundResultView.topTeamView.addSubview(roundResultView.topTeamNumberLabel)
         roundResultView.topTeamView.addSubview(roundResultView.topTeamScoreLabel)
@@ -124,7 +147,7 @@ extension RoundResultsViewController {
             make.top.equalToSuperview().inset(80)
         }
         
-        roundResultView.topTeamImage.snp.makeConstraints { make in
+        roundResultView.topTeamImageLabel.snp.makeConstraints { make in
             make.width.height.equalTo(56)
             make.top.bottom.equalToSuperview().inset(20)
             make.leading.equalTo(17)
