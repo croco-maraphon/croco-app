@@ -40,11 +40,11 @@
 		7EC9640929F14166001FBF97 /* WrongAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9640729F14166001FBF97 /* WrongAnswer.mp3 */; };
 		7ED2E8A829EE876E008DCF53 /* RoundResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */; };
 		7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */; };
+		E401D20929F1EDD700722FA9 /* StatisticServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401D1F729F1ED3300722FA9 /* StatisticServiceTests.swift */; };
 		E420454329EF18B300697334 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454229EF18B300697334 /* LeaderBoardViewController.swift */; };
 		E420454729EF1AE800697334 /* LeaderBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E420454629EF1AE800697334 /* LeaderBoardViewController.xib */; };
 		E420454929EF1E7E00697334 /* LeaderBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454829EF1E7E00697334 /* LeaderBoardCell.swift */; };
 		E420454B29F03E1500697334 /* MockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454A29F03E1500697334 /* MockModel.swift */; };
-		E4D0D62A29F0AD07008E8FCC /* StatisticServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D62929F0AD07008E8FCC /* StatisticServiceTest.swift */; };
 		E4E78BE729EF0FE5000254B4 /* StatisticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E78BE629EF0FE5000254B4 /* StatisticService.swift */; };
 		E4EE191F29EED634009D8D75 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */; };
 		E4EE192129EED64C009D8D75 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */; };
@@ -53,7 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E4D0D62B29F0AD07008E8FCC /* PBXContainerItemProxy */ = {
+		E401D1F929F1ED3300722FA9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 174113B229ED2E0F008C8EF1 /* Project object */;
 			proxyType = 1;
@@ -97,12 +97,12 @@
 		7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsViewController.swift; sourceTree = "<group>"; };
 		7ED2E8A929EE8777008DCF53 /* RoundResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsView.swift; sourceTree = "<group>"; };
 		7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		E401D1F529F1ED3300722FA9 /* StatisticServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StatisticServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E401D1F729F1ED3300722FA9 /* StatisticServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticServiceTests.swift; sourceTree = "<group>"; };
 		E420454229EF18B300697334 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		E420454629EF1AE800697334 /* LeaderBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderBoardViewController.xib; sourceTree = "<group>"; };
 		E420454829EF1E7E00697334 /* LeaderBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardCell.swift; sourceTree = "<group>"; };
 		E420454A29F03E1500697334 /* MockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModel.swift; sourceTree = "<group>"; };
-		E4D0D62729F0AD07008E8FCC /* StatisticServiceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StatisticServiceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4D0D62929F0AD07008E8FCC /* StatisticServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticServiceTest.swift; sourceTree = "<group>"; };
 		E4E78BE629EF0FE5000254B4 /* StatisticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticService.swift; sourceTree = "<group>"; };
 		E4EE191E29EED634009D8D75 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		E4EE192029EED64C009D8D75 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4D0D62429F0AD07008E8FCC /* Frameworks */ = {
+		E401D1F229F1ED3300722FA9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				174113BC29ED2E10008C8EF1 /* croco */,
-				E4D0D62829F0AD07008E8FCC /* StatisticServiceTest */,
+				E401D1F629F1ED3300722FA9 /* StatisticServiceTests */,
 				174113BB29ED2E10008C8EF1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				174113BA29ED2E10008C8EF1 /* croco.app */,
-				E4D0D62729F0AD07008E8FCC /* StatisticServiceTest.xctest */,
+				E401D1F529F1ED3300722FA9 /* StatisticServiceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,6 +304,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E401D1F629F1ED3300722FA9 /* StatisticServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				E401D1F729F1ED3300722FA9 /* StatisticServiceTests.swift */,
+			);
+			path = StatisticServiceTests;
+			sourceTree = "<group>";
+		};
 		E420454129EF189F00697334 /* LeaderBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,14 +321,6 @@
 				E420454A29F03E1500697334 /* MockModel.swift */,
 			);
 			path = LeaderBoard;
-			sourceTree = "<group>";
-		};
-		E4D0D62829F0AD07008E8FCC /* StatisticServiceTest */ = {
-			isa = PBXGroup;
-			children = (
-				E4D0D62929F0AD07008E8FCC /* StatisticServiceTest.swift */,
-			);
-			path = StatisticServiceTest;
 			sourceTree = "<group>";
 		};
 		E4E78BE529EF0FCC000254B4 /* Services */ = {
@@ -363,22 +363,22 @@
 			productReference = 174113BA29ED2E10008C8EF1 /* croco.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E4D0D62629F0AD07008E8FCC /* StatisticServiceTest */ = {
+		E401D1F429F1ED3300722FA9 /* StatisticServiceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4D0D62D29F0AD07008E8FCC /* Build configuration list for PBXNativeTarget "StatisticServiceTest" */;
+			buildConfigurationList = E401D1FD29F1ED3400722FA9 /* Build configuration list for PBXNativeTarget "StatisticServiceTests" */;
 			buildPhases = (
-				E4D0D62329F0AD07008E8FCC /* Sources */,
-				E4D0D62429F0AD07008E8FCC /* Frameworks */,
-				E4D0D62529F0AD07008E8FCC /* Resources */,
+				E401D1F129F1ED3300722FA9 /* Sources */,
+				E401D1F229F1ED3300722FA9 /* Frameworks */,
+				E401D1F329F1ED3300722FA9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E4D0D62C29F0AD07008E8FCC /* PBXTargetDependency */,
+				E401D1FA29F1ED3300722FA9 /* PBXTargetDependency */,
 			);
-			name = StatisticServiceTest;
-			productName = StatisticServiceTest;
-			productReference = E4D0D62729F0AD07008E8FCC /* StatisticServiceTest.xctest */;
+			name = StatisticServiceTests;
+			productName = StatisticServiceTests;
+			productReference = E401D1F529F1ED3300722FA9 /* StatisticServiceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -394,7 +394,7 @@
 					174113B929ED2E10008C8EF1 = {
 						CreatedOnToolsVersion = 14.1;
 					};
-					E4D0D62629F0AD07008E8FCC = {
+					E401D1F429F1ED3300722FA9 = {
 						CreatedOnToolsVersion = 14.1;
 						TestTargetID = 174113B929ED2E10008C8EF1;
 					};
@@ -417,7 +417,7 @@
 			projectRoot = "";
 			targets = (
 				174113B929ED2E10008C8EF1 /* croco */,
-				E4D0D62629F0AD07008E8FCC /* StatisticServiceTest */,
+				E401D1F429F1ED3300722FA9 /* StatisticServiceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -442,7 +442,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4D0D62529F0AD07008E8FCC /* Resources */ = {
+		E401D1F329F1ED3300722FA9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -489,21 +489,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4D0D62329F0AD07008E8FCC /* Sources */ = {
+		E401D1F129F1ED3300722FA9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4D0D62A29F0AD07008E8FCC /* StatisticServiceTest.swift in Sources */,
+				E401D20929F1EDD700722FA9 /* StatisticServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E4D0D62C29F0AD07008E8FCC /* PBXTargetDependency */ = {
+		E401D1FA29F1ED3300722FA9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 174113B929ED2E10008C8EF1 /* croco */;
-			targetProxy = E4D0D62B29F0AD07008E8FCC /* PBXContainerItemProxy */;
+			targetProxy = E401D1F929F1ED3300722FA9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -693,7 +693,7 @@
 			};
 			name = Release;
 		};
-		E4D0D62E29F0AD07008E8FCC /* Debug */ = {
+		E401D1FB29F1ED3400722FA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -702,7 +702,7 @@
 				DEVELOPMENT_TEAM = GCW3JGYN77;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.r-yy.croco.StatisticServiceTest";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.r-yy.croco.StatisticServiceTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -711,7 +711,7 @@
 			};
 			name = Debug;
 		};
-		E4D0D62F29F0AD07008E8FCC /* Release */ = {
+		E401D1FC29F1ED3400722FA9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -720,7 +720,7 @@
 				DEVELOPMENT_TEAM = GCW3JGYN77;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.r-yy.croco.StatisticServiceTest";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.r-yy.croco.StatisticServiceTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -750,11 +750,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4D0D62D29F0AD07008E8FCC /* Build configuration list for PBXNativeTarget "StatisticServiceTest" */ = {
+		E401D1FD29F1ED3400722FA9 /* Build configuration list for PBXNativeTarget "StatisticServiceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E4D0D62E29F0AD07008E8FCC /* Debug */,
-				E4D0D62F29F0AD07008E8FCC /* Release */,
+				E401D1FB29F1ED3400722FA9 /* Debug */,
+				E401D1FC29F1ED3400722FA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
