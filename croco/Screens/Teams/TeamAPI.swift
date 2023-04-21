@@ -49,11 +49,11 @@ class TeamAPI {
     static func getTeams() -> [Team] {
         let teamName = getName()
         let teamImage = getEmoji()
-        
         let teams = [
             Team(teamName: teamName[0], teamImage: teamImage[0], teamScore: 0),
             Team(teamName: teamName[1], teamImage: teamImage[1], teamScore: 0)
         ]
+       
         return teams
     }
     
@@ -65,6 +65,10 @@ class TeamAPI {
             Team(teamName: teamName[0], teamImage: teamImage[0], teamScore: 0),
             Team(teamName: teamName[1], teamImage: teamImage[1], teamScore: 0)
         ]
+        newTeams.forEach { team in
+            StatisticService().createTeam(team)
+        }
+        
         return newTeams
     }
 }

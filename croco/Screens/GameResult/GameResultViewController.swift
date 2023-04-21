@@ -12,7 +12,7 @@ import SnapKit
 class GameResultViewController: UIViewController {
     
     let resultView = GameResultView()
-    var teams = TeamsViewController().team
+    var teams = StatisticService().getTeams()
     
     
     override func viewDidLoad() {
@@ -29,6 +29,7 @@ class GameResultViewController: UIViewController {
     }
     
     @objc private func switchToTeamsViewController() {
+        
         MainCoordinator.shared.push(.Teams)
     }
 }
