@@ -12,9 +12,9 @@ class TeamTableViewCell: UITableViewCell {
     
     static let cellIdentifier = String(describing: UITableViewCell.self)
     
-    var team: TeamModel? {
+    var team: Team? {
         didSet {
-            guard let teamItem = team else {return}
+            guard let teamItem = team else { return }
 
             let emoji = teamItem.teamImage
             profileLabel.text = emoji

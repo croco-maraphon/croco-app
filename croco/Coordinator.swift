@@ -22,7 +22,7 @@ enum Screens {
     case Rules
     case Teams
     case Categories
-    case Game(teams: [TeamModel])
+    case Game(teams: [Team])
     case Results
     case RoundResults(correct: Bool, reset: () -> ())
     case LeaderBoard

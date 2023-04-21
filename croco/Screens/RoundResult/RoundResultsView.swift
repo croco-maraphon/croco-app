@@ -27,16 +27,15 @@ final class RoundResultsView {
         return view
     }()
     
-    lazy var topTeamImage: UIImageView = {
-        var imageView = UIImageView()
-        imageView.image = UIImage(named: "Cowboy")
+    lazy var topTeamImageLabel: UILabel = {
+        var label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 56)
         
-        return imageView
+        return label
     }()
     
     lazy var topTeamLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ковбои"
         label.font = UIFont.systemFont(ofSize: 20)
         
         return label
