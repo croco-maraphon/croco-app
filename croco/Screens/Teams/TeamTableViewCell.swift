@@ -14,7 +14,7 @@ class TeamTableViewCell: UITableViewCell {
     
     var team: Team? {
         didSet {
-            guard let teamItem = team else {return}
+            guard let teamItem = team else { return }
 
             let emoji = teamItem.teamImage
             profileLabel.text = emoji

@@ -27,16 +27,15 @@ final class RoundResultsView {
         return view
     }()
     
-    lazy var topTeamImage: UIImageView = {
-        var imageView = UIImageView()
-        imageView.image = UIImage(named: "Cowboy")
+    lazy var topTeamImageLabel: UILabel = {
+        var label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 56)
         
-        return imageView
+        return label
     }()
     
     lazy var topTeamLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ковбои"
         label.font = UIFont.systemFont(ofSize: 20)
         
         return label
@@ -120,7 +119,6 @@ final class RoundResultsView {
     
     lazy var nextTurnButton: UIButton = {
         var button = UIButton(type: .system)
-        button.setTitle("Передать ход", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(hexString: "74A730")
