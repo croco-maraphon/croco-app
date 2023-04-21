@@ -20,7 +20,10 @@ final class LeaderBoardCell: UITableViewCell {
         return view
     }()
 
-    private var teamModel = TeamModel()
+    private let image = UILabel()
+    private let name = UILabel()
+    private let points = UILabel()
+    private let pointsWord = UILabel()
 
     override init(
         style: UITableViewCell.CellStyle,
@@ -31,7 +34,8 @@ final class LeaderBoardCell: UITableViewCell {
             reuseIdentifier: reuseIdentifier
         )
         makeCell()
-        configCell()
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
     }
 
     required init?(
@@ -40,6 +44,15 @@ final class LeaderBoardCell: UITableViewCell {
         fatalError(
             "init(coder:) has not been implemented"
         )
+    }
+}
+
+extension LeaderBoardCell {
+    override func prepareForReuse() {
+        image.removeFromSuperview()
+        name.removeFromSuperview()
+        points.removeFromSuperview()
+        pointsWord.removeFromSuperview()
     }
 }
 
@@ -69,16 +82,11 @@ extension LeaderBoardCell {
 }
 
 extension LeaderBoardCell {
-    func configCell() {
-        let image = UIImageView()
-        let name = UILabel()
-        let points = UILabel()
-        let pointsWord = UILabel()
-
-        image.image = UIImage(named: teamModel.teamImage)
-        name.text = teamModel.teamName
-        points.text = "\(teamModel.teamScore)"
-        pointsWord.text = teamModel.scoreWord
+    func configCell(for team: Team) {
+        image.text = team.teamImage
+        name.text = team.teamName
+        points.text = String(team.teamScore)
+        pointsWord.text = "Очки"
 
         name.font = UIFont.systemFont(
             ofSize: 20

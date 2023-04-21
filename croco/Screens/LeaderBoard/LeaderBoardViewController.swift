@@ -18,14 +18,20 @@ final class LeaderBoardViewController: UIViewController {
     }()
 
     private let restoreButton = UIButton()
+    private var statisticService: StatisticService?
+    private var leaderboard: [Team] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        statisticService = StatisticService()
 
         setBackground()
         setHeader()
         setTable()
         setRestoreButton()
+
+        leaderboard = filterLeaderboard()
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -37,6 +43,7 @@ final class LeaderBoardViewController: UIViewController {
 
     @objc func restoreLeaderBoard() {
         self.tableView.removeFromSuperview()
+        statisticService?.restoreLeaderboard()
     }
 }
 
@@ -45,7 +52,7 @@ extension LeaderBoardViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return 10
+        return leaderboard.count
     }
 
     func tableView(
@@ -60,9 +67,7 @@ extension LeaderBoardViewController: UITableViewDataSource {
         guard let leaderBoardCell = cell as? LeaderBoardCell else {
             return UITableViewCell()
         }
-
-        leaderBoardCell.backgroundColor = UIColor.clear
-        leaderBoardCell.selectionStyle = .none
+        leaderBoardCell.configCell(for: leaderboard[indexPath.row])
 
         return leaderBoardCell
     }
@@ -202,5 +207,16 @@ extension LeaderBoardViewController {
             action: #selector(restoreLeaderBoard),
             for: .touchUpInside
         )
+    }
+}
+
+extension LeaderBoardViewController {
+    func filterLeaderboard() -> [Team] {
+        guard let statisticService = statisticService else {
+            return []
+        }
+        return statisticService.getLeaderboard().sorted {
+            $0.teamScore > $1.teamScore
+        }
     }
 }
