@@ -11,7 +11,7 @@ import SnapKit
 class TeamsViewController: UIViewController {
     
     private var team = TeamAPI.getTeams()
-    private let newTeam = TeamAPI.addTeam()
+    private var newTeam = TeamAPI.addTeam()
     private let teamsTable: TeamsTableView = TeamsTableView()
     
     // MARK: - Override Methods
@@ -70,14 +70,8 @@ class TeamsViewController: UIViewController {
     }
     
     @objc func addTeam() {
-        if team.count < 3 {
-            team.append(newTeam[0])
-            teamsTable.tableView.beginUpdates()
-            teamsTable.tableView.insertRows(at: [(NSIndexPath(row: team.count - 1, section: 0) as IndexPath)],
-                                            with: .automatic)
-            teamsTable.tableView.endUpdates()
-        } else if team.count < 4 {
-            team.append(newTeam[1])
+        if team.count < 4 {
+            team.append(newTeam[(0..<newTeam.count).randomElement()!])
             teamsTable.tableView.beginUpdates()
             teamsTable.tableView.insertRows(at: [(NSIndexPath(row: team.count - 1, section: 0) as IndexPath)],
                                             with: .automatic)
@@ -94,10 +88,25 @@ extension TeamsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TeamTableViewCell.cellIdentifier,
-                                                 for: indexPath) as! TeamTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TeamTableViewCell.cellIdentifier, for: indexPath) as! TeamTableViewCell
+        
+        let canDelete = team.count > 2
+        if canDelete {
+            cell.deleteTeamButton.setBackgroundImage(UIImage(named: "crossImage"), for: .normal)
+        } else {
+            cell.deleteTeamButton.setBackgroundImage(nil, for: .normal)
+        }
+        
         cell.team = team[indexPath.row]
+        cell.deleteTeamButton.addTarget(self, action: #selector(deleteTeam), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func deleteTeam(indexPath: IndexPath) {
+        team.remove(at: indexPath.row)
+        teamsTable.tableView.beginUpdates()
+        teamsTable.tableView.deleteRows(at: [indexPath], with: .automatic)
+        teamsTable.tableView.endUpdates()
     }
 }
 
@@ -113,12 +122,12 @@ extension TeamsViewController: UITableViewDelegate {
         return canDelete
     }
     
-    func tableView(tableView: UITableView,
-                   commitEditingStyle editingStyle: UITableViewCell.EditingStyle,
-                   forRowAtIndexPath indexPath: IndexPath) {
-        team.remove(at: indexPath.row)
-        teamsTable.tableView.beginUpdates()
-        teamsTable.tableView.deleteRows(at: [indexPath], with: .automatic)
-        teamsTable.tableView.endUpdates()
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            team.remove(at: indexPath.row)
+            teamsTable.tableView.beginUpdates()
+            teamsTable.tableView.deleteRows(at: [indexPath], with: .automatic)
+            teamsTable.tableView.endUpdates()
+        }
     }
 }
