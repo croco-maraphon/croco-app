@@ -94,7 +94,8 @@ class GameViewController: UIViewController {
     }
     
     func reset() {
-        print("reset round")
+        secondRemaining = 60
+        startTimer()
     }
     
     @objc func navigateToCorrect() {
