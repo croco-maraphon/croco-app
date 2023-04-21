@@ -12,9 +12,9 @@ class TeamTableViewCell: UITableViewCell {
     
     static let cellIdentifier = String(describing: UITableViewCell.self)
     
-    var team: TeamModel? {
+    var team: Team? {
         didSet {
-            guard let teamItem = team else {return}
+            guard let teamItem = team else { return }
 
             let emoji = teamItem.teamImage
             profileLabel.text = emoji
@@ -49,12 +49,9 @@ class TeamTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let crossImageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.backgroundColor = .clear
-        image.clipsToBounds = true
-        return image
+    let deleteTeamButton: UIButton = {
+        let button = UIButton(type: .system)
+        return button
     }()
     
     // MARK: - Initializers
@@ -78,7 +75,7 @@ class TeamTableViewCell: UITableViewCell {
         contentView.addSubview(cellBackgroundImageView)
         contentView.addSubview(profileLabel)
         contentView.addSubview(nameLabel)
-        contentView.addSubview(crossImageView)
+        contentView.addSubview(deleteTeamButton)
     }
     
     private func addConstraints() {
@@ -98,10 +95,10 @@ class TeamTableViewCell: UITableViewCell {
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(profileLabel.snp.trailing).offset(34)
-            make.trailing.equalTo(crossImageView.snp.leading).inset(5)
+            make.trailing.equalTo(deleteTeamButton.snp.leading).inset(5)
         }
         
-        crossImageView.snp.makeConstraints { make in
+        deleteTeamButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(17)
             make.width.height.equalTo(62)
