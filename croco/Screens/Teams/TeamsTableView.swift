@@ -20,7 +20,6 @@ class TeamsTableView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
-        tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         return tableView
