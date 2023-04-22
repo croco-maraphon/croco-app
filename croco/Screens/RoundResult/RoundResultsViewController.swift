@@ -16,7 +16,7 @@ class RoundResultsViewController: UIViewController {
     private var playingCommands: [Team] = StatisticService().getTeams()
     private var currentCommand: Team?
     private var nextCommand: Team?
-    private var numberOfRound: Int?
+    private var numberOfRound: Int = 0
    
     private var isFirstRound = true
     
@@ -94,13 +94,13 @@ class RoundResultsViewController: UIViewController {
             roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
                                                      for: .touchUpInside)
         } else {
-            roundResultView.nextTurnButton.setTitle("Следующий ход - \(nextTeam.teamName)", for: .normal)
+            roundResultView.nextTurnLabel.text = "Следующий ход - \(nextTeam.teamName)"
+            roundResultView.nextTurnButton.setTitle("Передать ход", for: .normal)
             roundResultView.nextTurnButton.addTarget(self, action: #selector(swithToGameViewController), for: .touchUpInside)
         }
     }
     
     private func nextRound() {
-        guard var numberOfRound = numberOfRound else { return }
         if numberOfRound + 1 != playingCommands.count {
             numberOfRound += 1
             nextCommand = playingCommands[numberOfRound]
@@ -114,7 +114,7 @@ class RoundResultsViewController: UIViewController {
         if isFirstRound {
             numberOfRound = 0
             isFirstRound = false
-            currentCommand = playingCommands[numberOfRound!]
+            currentCommand = playingCommands[numberOfRound]
         }
     }
     
