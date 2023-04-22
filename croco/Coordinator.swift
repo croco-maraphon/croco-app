@@ -38,7 +38,7 @@ enum Screens {
         case .Categories:
             return CategoriesViewController()
         case .Game(let teams):
-            return GameViewController(teams: [])
+            return GameViewController(teams: teams)
         case .Results:
             return GameResultViewController()
         case .RoundResults(let correct, let reset):

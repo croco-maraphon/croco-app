@@ -109,7 +109,7 @@ class RoundResultsViewController: UIViewController {
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
         reset?()
-        MainCoordinator.shared.push(.Game(teams: currentTeamScore))
+        MainCoordinator.shared.push(.Game(teams: TeamAPI.getTeams()))
     }
 
     @objc private func switchToGameResultViewController() {
