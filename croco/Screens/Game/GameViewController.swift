@@ -18,18 +18,12 @@ class GameViewController: UIViewController {
     
     var timer = Timer()
     var secondRemaining = 60
-    var team: Team?
     
-    init(team: Team) {
-        self.team = team
-        gameView.currentTeamLabel.text = "Ход команды - \(team.teamName)"
-        gameView.currentTeamImageLabel.text = team.teamImage
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var playingCommands: [Team] = StatisticService().getTeams()
+    var currentCommand: Team?
+    var nextCommand: Team?
+    var numberOfRound: Int = 0
+    var isFirstRound = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +34,12 @@ class GameViewController: UIViewController {
         correctButtonPressed()
         wrongButtonPressed()
         mainButtonPressed()
+        
+        nextRound()
+        setupGame()
+        setupTeamInfo()
+        print(numberOfRound)
+        print(playingCommands)
     }
     
     override func viewWillLayoutSubviews() {
@@ -102,8 +102,15 @@ class GameViewController: UIViewController {
         stopSound()
         timer.invalidate()
         audioService.makeSound(sound: .correctAnswer)
-                
-        MainCoordinator.shared.push(.RoundResults(correct: true))
+        let vc = RoundResultsViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.isWinRound = true
+        vc.numberOfRound = numberOfRound
+        vc.currentCommand = currentCommand
+        vc.nextCommand = nextCommand
+        StatisticService().addScoreTo(team: currentCommand!)
+        
+        present(vc, animated: true)
     }
     
     // переход на WrongViewController
@@ -116,7 +123,14 @@ class GameViewController: UIViewController {
         timer.invalidate()
         audioService.makeSound(sound: .wrongAnswer)
         
-        MainCoordinator.shared.push(.RoundResults(correct: false))
+        let vc = RoundResultsViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.isWinRound = false
+        vc.numberOfRound = numberOfRound
+        vc.currentCommand = currentCommand
+        vc.nextCommand = nextCommand
+        
+        present(vc, animated: true)
         
     }
     
@@ -151,4 +165,38 @@ class GameViewController: UIViewController {
     func navigateToMain() {
         MainCoordinator.shared.popToRoot()
     }
+    
+    func setupTeamInfo() {
+        guard let currentCommand = currentCommand else { return }
+        gameView.currentTeamLabel.text = "Ход команды - \(currentCommand.teamName)"
+        gameView.currentTeamImageLabel.text = currentCommand.teamImage
+        
+        if numberOfRound + 1 != playingCommands.count {
+            nextCommand = playingCommands[numberOfRound + 1]
+        } else {
+            nextCommand = playingCommands[0]
+        }
+    }
+    
+    func setupGame() {
+        if isFirstRound {
+            currentCommand = playingCommands[numberOfRound]
+            isFirstRound = false
+        } else {
+            currentCommand = playingCommands[numberOfRound]
+        }
+    }
+    
+    func nextRound() {
+        if isFirstRound == false {
+            if numberOfRound + 1 != playingCommands.count {
+                numberOfRound += 1
+                nextCommand = playingCommands[numberOfRound]
+            } else {
+                numberOfRound = 0
+                nextCommand = playingCommands[numberOfRound]
+            }
+        }
+    }
 }
+

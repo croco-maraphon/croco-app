@@ -29,8 +29,12 @@ class GameResultViewController: UIViewController {
     }
     
     @objc private func switchToTeamsViewController() {
+       let vc = TeamsViewController()
+        vc.modalPresentationStyle = .overFullScreen
         StatisticService().restoreTeamsScore()
-        MainCoordinator.shared.push(.Teams)
+        
+        
+        present(vc, animated: true)
     }
 }
 
