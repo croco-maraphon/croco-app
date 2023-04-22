@@ -110,7 +110,6 @@ final class RoundResultsView {
     
     lazy var nextTurnLabel: UILabel = {
         var label = UILabel()
-        label.text = "Cледующий ход - Стройняшки"
         label.font = UIFont.systemFont(ofSize: 16)
         
         return label

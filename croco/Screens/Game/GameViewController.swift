@@ -14,15 +14,16 @@ class GameViewController: UIViewController {
     
     private let gameView = GameView()
     private let audioService = AudioService.shared
-    
     let label = CategoriesPresenter.shared.getWordToPlay()
     
     var timer = Timer()
     var secondRemaining = 60
-    var teams = [Team]()
+    var team: Team?
     
-    init(teams: [Team]) {
-        self.teams = teams
+    init(team: Team) {
+        self.team = team
+        gameView.currentTeamLabel.text = "Ход команды - \(team.teamName)"
+        gameView.currentTeamImageLabel.text = team.teamImage
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,7 +35,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated: true)
-        
         setGameView()
         startTimer()
         correctButtonPressed()
@@ -103,7 +103,7 @@ class GameViewController: UIViewController {
         timer.invalidate()
         audioService.makeSound(sound: .correctAnswer)
                 
-        MainCoordinator.shared.push(.RoundResults(correct: true, reset: self.reset))
+        MainCoordinator.shared.push(.RoundResults(correct: true))
     }
     
     // переход на WrongViewController
@@ -116,7 +116,7 @@ class GameViewController: UIViewController {
         timer.invalidate()
         audioService.makeSound(sound: .wrongAnswer)
         
-        MainCoordinator.shared.push(.RoundResults(correct: false, reset: self.reset))
+        MainCoordinator.shared.push(.RoundResults(correct: false))
         
     }
     
@@ -132,6 +132,7 @@ class GameViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         let yesAction = UIAlertAction(title: "Да", style: .default) { _ in
             self.navigateToMain()
+            self.timer.invalidate()
         }
         yesAction.setValue(UIColor.red, forKey: "titleTextColor")
         alert.addAction(cancelAction)
