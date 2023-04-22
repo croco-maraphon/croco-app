@@ -35,7 +35,7 @@ class TeamsViewController: UIViewController {
     private func configureViewController() {       
         let label = UILabel()
         label.text = "Кто играет?"
-        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         navigationItem.titleView = label
     }
     
