@@ -94,16 +94,14 @@ extension LeaderBoardViewController {
                 constant: 40
             ),
             tableView.trailingAnchor.constraint(
-                equalTo: self.view.trailingAnchor,
-                constant: -12
+                equalTo: self.view.trailingAnchor
             ),
             tableView.bottomAnchor.constraint(
                 equalTo: self.view.bottomAnchor,
                 constant: -124
             ),
             tableView.leadingAnchor.constraint(
-                equalTo: self.view.leadingAnchor,
-                constant: 12
+                equalTo: self.view.leadingAnchor
             )
         ])
     }

@@ -29,7 +29,7 @@ class GameResultViewController: UIViewController {
     }
     
     @objc private func switchToTeamsViewController() {
-        
+        StatisticService().restoreTeamsScore()
         MainCoordinator.shared.push(.Teams)
     }
 }

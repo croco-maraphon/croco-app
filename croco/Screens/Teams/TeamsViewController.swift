@@ -12,7 +12,7 @@ class TeamsViewController: UIViewController {
     
     private var teams = TeamAPI.getTeams()
     private let teamsTable: TeamsTableView = TeamsTableView()
-    
+
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class TeamsViewController: UIViewController {
     private func configureViewController() {       
         let label = UILabel()
         label.text = "Кто играет?"
-        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         navigationItem.titleView = label
     }
     
@@ -97,6 +97,11 @@ extension TeamsViewController: UITableViewDataSource {
         cell.team = teams[indexPath.row]
         cell.deleteCallback = deleteTeam
         cell.indexPath = indexPath
+
+        let view = UIView()
+        view.backgroundColor = UIColor(hex: "#74A730")
+        cell.selectedBackgroundView = view
+
         return cell
     }
     
@@ -131,4 +136,29 @@ extension TeamsViewController: UITableViewDelegate {
             teamsTable.tableView.reloadData()
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let alertController = UIAlertController(title: "Изменить имя команды", message: "Введите новое имя для выбранной команды", preferredStyle: .alert)
+
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Новое имя команды"
+        }
+
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { (_) in
+            if let textField = alertController.textFields?.first, let newText = textField.text, !newText.isEmpty {
+                self.teams[indexPath.row].teamName = newText
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+
+                let statisticService = StatisticService()
+                statisticService.updateTeamName(team: self.teams[indexPath.row], newName: newText)
+            }
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+
+        present(alertController, animated: true, completion: nil)
+        }
 }

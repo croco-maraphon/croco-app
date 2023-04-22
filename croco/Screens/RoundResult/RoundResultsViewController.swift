@@ -12,48 +12,49 @@ import SnapKit
 class RoundResultsViewController: UIViewController {
     
     private var roundResultView = RoundResultsView()
-    private var currentTeamScore: [Team] = []
+    private let audioService = AudioService.shared
     private var playingCommands: [Team] = StatisticService().getTeams()
     private var currentCommand: Team?
     private var nextCommand: Team?
-    private var numberOfRound = 0
-    private let audioService = AudioService.shared
-    
-    var maxCurrentScore = 5
+    private var numberOfRound: Int = 0
+   
+    private var isFirstRound = true
     
     var isWinRound: Bool?
     var reset: (() -> ())?
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentCommand = playingCommands[numberOfRound]
-        nextRound()
-        nextCommand = playingCommands[numberOfRound + 1]
+        defineRound()
         
         setViews()
         setConstraints()
+        
         showResult(result: isWinRound)
-        checkCurrentScore(maxCurrentScore)
+        nextRound()
+        checkCurrentScore(nextCommand)
     }
     
     func showResult(result: Bool?) {
-        guard let result = result else { return }
+        guard let result = result,
+              let currentCommand = currentCommand else { return }
+        
         switch result {
         case true:
+            StatisticService().addScoreTo(team: currentCommand)
+            addScore(result: result)
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "74A730")
-            roundResultView.topTeamLabel.text = currentCommand?.teamName
-            roundResultView.topTeamImageLabel.text = currentCommand?.teamImage
+            roundResultView.topTeamLabel.text = currentCommand.teamName
+            roundResultView.topTeamImageLabel.text = currentCommand.teamImage
+            roundResultView.topTeamNumberLabel.text = String(currentCommand.teamScore)
             roundResultView.winOrLooseLabel.text = "Поздравляем!"
             roundResultView.getPointOrNotLabel.text = "Вы получаете"
             roundResultView.pointsImage.image = UIImage(named: "Vector")
-            addScore(result: result)
-//            addScoreTo(team: currentCommand)
         case false:
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "E64546")
-            roundResultView.topTeamLabel.text = currentCommand?.teamName
-            roundResultView.topTeamImageLabel.text = currentCommand?.teamImage
+            roundResultView.topTeamLabel.text = currentCommand.teamName
+            roundResultView.topTeamImageLabel.text = currentCommand.teamImage
             roundResultView.winOrLooseLabel.text = "УВЫ И АХ!"
-            roundResultView.topTeamNumberLabel.text = "2"
             roundResultView.getPointOrNotLabel.text = "Вы не отгадали слово и не получаете очков!"
             roundResultView.pointsImage.image = UIImage(named: "Ellipse 2")
             addScore(result: result)
@@ -80,9 +81,10 @@ class RoundResultsViewController: UIViewController {
         }
     }
     
-    private func checkCurrentScore(_ score: Int) {
-//        if team.teamScore == 5 {
-        if score == 5 {
+    private func checkCurrentScore(_ nextTeam: Team?) {
+        guard let nextTeam = nextTeam,
+              let currentCommand = currentCommand else { return }
+        if currentCommand.teamScore == 5 {
             roundResultView.getPointOrNotLabel.text = "Вы выйграли!"
             roundResultView.getPointOrNotLabel.font = UIFont.boldSystemFont(ofSize: 16)
             roundResultView.topScoreLabel.text = ""
@@ -92,7 +94,8 @@ class RoundResultsViewController: UIViewController {
             roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
                                                      for: .touchUpInside)
         } else {
-            roundResultView.nextTurnButton.setTitle("Следующий ход - Стройняшки", for: .normal)
+            roundResultView.nextTurnLabel.text = "Следующий ход - \(nextTeam.teamName)"
+            roundResultView.nextTurnButton.setTitle("Передать ход", for: .normal)
             roundResultView.nextTurnButton.addTarget(self, action: #selector(swithToGameViewController), for: .touchUpInside)
         }
     }
@@ -100,8 +103,18 @@ class RoundResultsViewController: UIViewController {
     private func nextRound() {
         if numberOfRound + 1 != playingCommands.count {
             numberOfRound += 1
+            nextCommand = playingCommands[numberOfRound]
         } else {
             numberOfRound = 0
+            nextCommand = playingCommands[numberOfRound]
+        }
+    }
+    
+    private func defineRound() {
+        if isFirstRound {
+            numberOfRound = 0
+            isFirstRound = false
+            currentCommand = playingCommands[numberOfRound]
         }
     }
     
@@ -109,7 +122,7 @@ class RoundResultsViewController: UIViewController {
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
         reset?()
-        MainCoordinator.shared.push(.Game(teams: TeamAPI.getTeams()))
+        MainCoordinator.shared.push(.Game(team: nextCommand!))
     }
 
     @objc private func switchToGameResultViewController() {
