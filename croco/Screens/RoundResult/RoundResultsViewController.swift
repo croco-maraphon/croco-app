@@ -96,7 +96,6 @@ class RoundResultsViewController: UIViewController {
         }
     }
     
-
     
     
     @objc private func swithToGameViewController() {

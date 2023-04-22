@@ -20,8 +20,19 @@ final class LeaderBoardCell: UITableViewCell {
         return view
     }()
 
-    private let image = UILabel()
-    private let name = UILabel()
+    private let image: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 56)
+        label.layer.cornerRadius = 28
+        label.layer.masksToBounds = true
+        return label
+    }()
+    
+    private let name: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        return label
+    }()
     private let points = UILabel()
     private let pointsWord = UILabel()
 
@@ -68,14 +79,16 @@ extension LeaderBoardCell {
                 constant: 12
             ),
             cellView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor
+                equalTo: contentView.trailingAnchor,
+                constant: -12
             ),
             cellView.bottomAnchor.constraint(
                 equalTo: contentView.bottomAnchor,
                 constant: -13
             ),
             cellView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor
+                equalTo: contentView.leadingAnchor,
+                constant: 12
             )
         ])
     }
@@ -122,6 +135,10 @@ extension LeaderBoardCell {
             name.leadingAnchor.constraint(
                 equalTo: image.trailingAnchor,
                 constant: 34
+            ),
+            name.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -65
             ),
             points.bottomAnchor.constraint(
                 equalTo: pointsWord.topAnchor,

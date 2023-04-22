@@ -29,7 +29,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated: true)
-        
         setGameView()
         startTimer()
         correctButtonPressed()
