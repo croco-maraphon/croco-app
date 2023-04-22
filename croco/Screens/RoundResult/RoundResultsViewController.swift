@@ -111,6 +111,9 @@ class RoundResultsViewController: UIViewController {
     }
 
     @objc private func switchToGameResultViewController() {
+        let statisticService = StatisticService()
+        let teams = statisticService.getTeams()
+        statisticService.updateLeaderboard(gameResult: teams)
         audioService.player?.stop()
         
         let vc = GameResultViewController()
