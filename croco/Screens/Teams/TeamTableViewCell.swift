@@ -110,11 +110,7 @@ class TeamTableViewCell: UITableViewCell {
         deleteTeamButton.addTarget(self, action: #selector(deleteTeam), for: .touchUpInside)
     }
     
-    @objc func deleteTeam() {
-        if let team = team {
-            TeamAPI.deleteTeam(team)
-        }
-        
+    @objc func deleteTeam() {        
         if let indexPath = indexPath, let deleteCallback = deleteCallback {
             deleteCallback(indexPath)
         }
