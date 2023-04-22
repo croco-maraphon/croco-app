@@ -37,6 +37,22 @@ class GameView: UIView {
         return label
     }()
     
+    let currentTeamLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    let currentTeamImageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 40)
+        
+        return label
+    }()
+    
     let wordLabel: UILabel = {
         let label = UILabel()
         label.text = "Картошка"
@@ -118,6 +134,8 @@ class GameView: UIView {
         addSubview(backgroundImageView)
         addSubview(crocoImageView)
         addSubview(timerLabel)
+        addSubview(currentTeamLabel)
+        addSubview(currentTeamImageLabel)
         addSubview(wordLabel)
         addSubview(commentLabel)
         addSubview(correctButton)
@@ -142,6 +160,16 @@ class GameView: UIView {
             make.centerX.equalToSuperview()
             make.width.equalTo(324)
             make.height.equalTo(37)
+        }
+        
+        currentTeamLabel.snp.makeConstraints { make in
+            make.top.equalTo(timerLabel.snp.bottom).offset(30)
+            make.centerX.equalToSuperview()
+        }
+        
+        currentTeamImageLabel.snp.makeConstraints { make in
+            make.top.equalTo(currentTeamLabel).offset(20)
+            make.centerX.equalTo(currentTeamLabel)
         }
         
         wordLabel.snp.makeConstraints { make in
