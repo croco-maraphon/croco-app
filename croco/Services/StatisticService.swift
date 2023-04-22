@@ -78,7 +78,7 @@ final class StatisticService {
         setData(teams: teams, key: Keys.teams)
         if team.teamScore == 0 {
             leaderboard.removeAll(where: { $0.id == team.id })
-            setData(teams: teams, key: Keys.leaderboard)
+            setData(teams: leaderboard, key: Keys.leaderboard)
         }
     }
 
