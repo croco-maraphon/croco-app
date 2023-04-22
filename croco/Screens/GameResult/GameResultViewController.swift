@@ -33,6 +33,7 @@ class GameResultViewController: UIViewController {
         vc.modalPresentationStyle = .overFullScreen
         StatisticService().restoreTeamsScore()
         
+        
         present(vc, animated: true)
     }
 }
