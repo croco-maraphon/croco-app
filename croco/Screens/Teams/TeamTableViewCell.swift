@@ -11,6 +11,9 @@ import SnapKit
 class TeamTableViewCell: UITableViewCell {
     
     static let cellIdentifier = String(describing: UITableViewCell.self)
+
+    var deleteCallback: ((_ indexPath: IndexPath) -> ())?
+    var indexPath: IndexPath?
     
     var team: Team? {
         didSet {
@@ -102,6 +105,18 @@ class TeamTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(17)
             make.width.height.equalTo(62)
+        }
+        
+        deleteTeamButton.addTarget(self, action: #selector(deleteTeam), for: .touchUpInside)
+    }
+    
+    @objc func deleteTeam() {
+        if let team = team {
+            TeamAPI.deleteTeam(team)
+        }
+        
+        if let indexPath = indexPath, let deleteCallback = deleteCallback {
+            deleteCallback(indexPath)
         }
     }
 }

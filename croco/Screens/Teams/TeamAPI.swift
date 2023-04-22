@@ -10,20 +10,14 @@ import UIKit
 
 class TeamAPI {
     
-    static func getEmoji() -> [String] {
-        var emojies = [String]()
-                
-        while emojies.count < 4 {
-            let randomElememnt = (0x1F300...0x1F3F0).randomElement()!
-            guard let scalar = UnicodeScalar(randomElememnt) else { return ["❓", "❓"] }
-            if !emojies.contains("\(scalar)") {
-                emojies.append("\(scalar)")
-            }
-        }
-        return emojies
+    static func getEmoji() -> String {
+        
+        let randomElememnt = (0x1F300...0x1F3F0).randomElement()!
+        guard let scalar = UnicodeScalar(randomElememnt) else { return "❓" }
+        return "\(scalar)"
     }
     
-    static func getName() -> [String] {
+    static func getName() -> String {
         let names = [
             "Тигры", "Монстры", "Победители", "Зловещие", "Убийцы кроликов", "Мы-машина", "Непоколебимые",
             "Голодные звери", "Жаждущие крови", "Черная банда", "Безумные волки", "Дикие львы",
@@ -34,43 +28,33 @@ class TeamAPI {
             "Витязи", "Киборги", "Команда Кусто", "Пираты", "Беспредельщики", "Злые", "Безумные змеи", "Серые львы",
             "Стрелочники", "Оружейная банда", "Танкисты", "Громкие", "Молниеносцы", "Неробкие", "Подводники"
         ]
-        
-        var teamNames = [String]()
-        
-        while teamNames.count < 4 {
-            guard let name = names.randomElement() else { return ["Команда 1", "Команда 2"] }
-            if !teamNames.contains(name) {
-                teamNames.append(name)
-            }
-        }
-        return teamNames
+                
+        guard let name = names.randomElement() else { return "Черти" }
+        return name
     }
     
     static func getTeams() -> [Team] {
-        let teamName = getName()
-        let teamImage = getEmoji()
-        let teams = [
-            Team(teamName: teamName[0], teamImage: teamImage[0], teamScore: 0),
-            Team(teamName: teamName[1], teamImage: teamImage[1], teamScore: 0)
-        ]
-       
-        return teams
-    }
-    
-    static func addTeam() -> [Team] {
-        let teamName = getName()
-        let teamImage = getEmoji()
-        
-        let newTeams = [
-            Team(teamName: teamName[0], teamImage: teamImage[0], teamScore: 0),
-            Team(teamName: teamName[1], teamImage: teamImage[1], teamScore: 0),
-            Team(teamName: teamName[2], teamImage: teamImage[2], teamScore: 0),
-            Team(teamName: teamName[3], teamImage: teamImage[3], teamScore: 0)            
-        ]
-        newTeams.forEach { team in
-            StatisticService().createTeam(team)
+        let teams = StatisticService.shared.getTeams()
+
+        if (teams.isEmpty) {
+            _ = addTeam()
+            _ = addTeam()
         }
         
-        return newTeams
+        return StatisticService.shared.getTeams()
+    }
+    
+    static func addTeam() -> Team {
+        let teamName = getName()
+        let teamImage = getEmoji()
+        
+        let team = Team(teamName: teamName, teamImage: teamImage, teamScore: 0)
+        StatisticService().createTeam(team)
+        
+        return team
+    }
+    
+    static func deleteTeam(_ team: Team) {
+        StatisticService().deleteTeam(team)
     }
 }

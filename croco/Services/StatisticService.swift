@@ -15,6 +15,8 @@ struct Team: Codable, Equatable, Identifiable {
 }
 
 final class StatisticService {
+    static let shared = StatisticService()
+    
     enum Keys: String {
         case teams, leaderboard
     }
@@ -85,6 +87,7 @@ final class StatisticService {
 
     public func restoreLeaderboard() {
         userDefaults.removeObject(forKey: Keys.leaderboard.rawValue)
+        userDefaults.removeObject(forKey: Keys.teams.rawValue)
     }
 
     private func setData(teams: [Team], key: Keys) {
