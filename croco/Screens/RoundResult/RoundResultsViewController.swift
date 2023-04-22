@@ -13,10 +13,9 @@ class RoundResultsViewController: UIViewController {
     
     private var roundResultView = RoundResultsView()
     private let audioService = AudioService.shared
-    private var playingCommands: [Team] = StatisticService().getTeams()
-    private var currentCommand: Team?
-    private var nextCommand: Team?
-    private var numberOfRound: Int?
+    var currentCommand: Team?
+    var nextCommand: Team?
+    var numberOfRound = 0
    
     private var isFirstRound = true
     
@@ -25,13 +24,10 @@ class RoundResultsViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        defineRound()
-        
         setViews()
         setConstraints()
         
         showResult(result: isWinRound)
-        nextRound()
         checkCurrentScore(nextCommand)
     }
     
@@ -41,12 +37,11 @@ class RoundResultsViewController: UIViewController {
         
         switch result {
         case true:
-            StatisticService().addScoreTo(team: currentCommand)
             addScore(result: result)
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "74A730")
             roundResultView.topTeamLabel.text = currentCommand.teamName
             roundResultView.topTeamImageLabel.text = currentCommand.teamImage
-            roundResultView.topTeamNumberLabel.text = String(currentCommand.teamScore)
+            roundResultView.topTeamNumberLabel.text = String(currentCommand.teamScore + 1)
             roundResultView.winOrLooseLabel.text = "Поздравляем!"
             roundResultView.getPointOrNotLabel.text = "Вы получаете"
             roundResultView.pointsImage.image = UIImage(named: "Vector")
@@ -54,6 +49,7 @@ class RoundResultsViewController: UIViewController {
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "E64546")
             roundResultView.topTeamLabel.text = currentCommand.teamName
             roundResultView.topTeamImageLabel.text = currentCommand.teamImage
+            roundResultView.topTeamNumberLabel.text = String(currentCommand.teamScore)
             roundResultView.winOrLooseLabel.text = "УВЫ И АХ!"
             roundResultView.getPointOrNotLabel.text = "Вы не отгадали слово и не получаете очков!"
             roundResultView.pointsImage.image = UIImage(named: "Ellipse 2")
@@ -84,7 +80,7 @@ class RoundResultsViewController: UIViewController {
     private func checkCurrentScore(_ nextTeam: Team?) {
         guard let nextTeam = nextTeam,
               let currentCommand = currentCommand else { return }
-        if currentCommand.teamScore == 5 {
+        if currentCommand.teamScore == 4 {
             roundResultView.getPointOrNotLabel.text = "Вы выйграли!"
             roundResultView.getPointOrNotLabel.font = UIFont.boldSystemFont(ofSize: 16)
             roundResultView.topScoreLabel.text = ""
@@ -94,40 +90,34 @@ class RoundResultsViewController: UIViewController {
             roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
                                                      for: .touchUpInside)
         } else {
-            roundResultView.nextTurnButton.setTitle("Следующий ход - \(nextTeam.teamName)", for: .normal)
+            roundResultView.nextTurnLabel.text = "Следующий ход - \(nextTeam.teamName)"
+            roundResultView.nextTurnButton.setTitle("Передать ход", for: .normal)
             roundResultView.nextTurnButton.addTarget(self, action: #selector(swithToGameViewController), for: .touchUpInside)
         }
     }
     
-    private func nextRound() {
-        guard var numberOfRound = numberOfRound else { return }
-        if numberOfRound + 1 != playingCommands.count {
-            numberOfRound += 1
-            nextCommand = playingCommands[numberOfRound]
-        } else {
-            numberOfRound = 0
-            nextCommand = playingCommands[numberOfRound]
-        }
-    }
-    
-    private func defineRound() {
-        if isFirstRound {
-            numberOfRound = 0
-            isFirstRound = false
-            currentCommand = playingCommands[numberOfRound!]
-        }
-    }
+
     
     
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
         reset?()
-        MainCoordinator.shared.push(.Game(team: nextCommand!))
+        
+        let vc = GameViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.isFirstRound = false
+        vc.numberOfRound = numberOfRound
+        
+        present(vc, animated: true)
     }
 
     @objc private func switchToGameResultViewController() {
         audioService.player?.stop()
-        MainCoordinator.shared.push(.Results)
+        
+        let vc = GameResultViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        
+        present(vc, animated: true)
     }
 }
     
