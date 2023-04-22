@@ -76,6 +76,10 @@ final class StatisticService {
     public func deleteTeam(_ team: Team) {
         teams.removeAll(where: { $0.id == team.id })
         setData(teams: teams, key: Keys.teams)
+        if team.teamScore == 0 {
+            leaderboard.removeAll(where: { $0.id == team.id })
+            setData(teams: leaderboard, key: Keys.leaderboard)
+        }
     }
 
     public func restoreTeamsScore() {
