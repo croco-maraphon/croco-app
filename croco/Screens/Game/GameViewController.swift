@@ -101,8 +101,8 @@ class GameViewController: UIViewController {
         stopSound()
         timer.invalidate()
         audioService.makeSound(sound: .correctAnswer)
-        MainCoordinator().push(.RoundResults(correct: true))
         StatisticService().addScoreTo(team: currentCommand!)
+        MainCoordinator.shared.push(.RoundResults(correct: true))
     }
     
     // переход на WrongViewController
@@ -114,7 +114,7 @@ class GameViewController: UIViewController {
         stopSound()
         timer.invalidate()
         audioService.makeSound(sound: .wrongAnswer)
-        MainCoordinator().push(.RoundResults(correct: false))
+        MainCoordinator.shared.push(.RoundResults(correct: false))
     }
     
     // переход на MainViewController
