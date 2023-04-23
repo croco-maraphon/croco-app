@@ -90,7 +90,7 @@ class GameViewController: UIViewController {
         gameView.correctButton.addTarget(self, action: #selector(navigateToCorrect), for: .touchUpInside)
     }
     
-    func reset() {
+    func reset(numberOfRound: Int = 0) {
         secondRemaining = 60
         startTimer()
         setupGame()
