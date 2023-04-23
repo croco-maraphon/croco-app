@@ -31,6 +31,7 @@ class MainViewController: UIViewController {
         setupGameButton()
         setupRulesButton()
         setupResultButton()
+        clearBackButtonTitle() 
     }
     
     func setupViews() {
