@@ -168,9 +168,9 @@ extension RoundResultsViewController {
         }
         
         roundResultView.topTeamNumberLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(20)
-            
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(11)
+            make.width.height.equalTo(62)
         }
         
         roundResultView.topTeamScoreLabel.snp.makeConstraints { make in

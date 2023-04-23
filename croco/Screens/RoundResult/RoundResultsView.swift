@@ -43,7 +43,7 @@ final class RoundResultsView {
     
     lazy var topTeamNumberLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 40)
+        label.font = UIFont.systemFont(ofSize: 60)
         
         return label
     }()
