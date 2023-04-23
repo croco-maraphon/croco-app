@@ -21,6 +21,7 @@ class TeamsViewController: UIViewController {
         conformProtocols()
         addTeamButtonPressed()
         playersReadyButtonPressed()
+        clearBackButtonTitle()
     }
     
     override func loadView() {
@@ -158,5 +159,13 @@ extension TeamsViewController: UITableViewDelegate {
         alertController.addAction(saveAction)
 
         present(alertController, animated: true, completion: nil)
-        }
+    }
+}
+
+extension TeamsViewController {
+    private func clearBackButtonTitle() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: ""
+        )
+    }
 }
