@@ -21,7 +21,6 @@ class GameViewController: UIViewController {
     
     var playingCommands: [Team] = StatisticService().getTeams()
     var currentCommand: Team?
-    var nextCommand: Team?
     var numberOfRound: Int = 0
     var isFirstRound = true
     
@@ -35,9 +34,7 @@ class GameViewController: UIViewController {
         wrongButtonPressed()
         mainButtonPressed()
         
-        nextRound()
-        setupGame()
-        setupTeamInfo()
+        reset()
         print(numberOfRound)
         print(playingCommands)
     }
@@ -96,21 +93,16 @@ class GameViewController: UIViewController {
     func reset() {
         secondRemaining = 60
         startTimer()
+        setupGame()
+        setupTeamInfo()
     }
     
     @objc func navigateToCorrect() {
         stopSound()
         timer.invalidate()
         audioService.makeSound(sound: .correctAnswer)
-        let vc = RoundResultsViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        vc.isWinRound = true
-        vc.numberOfRound = numberOfRound
-        vc.currentCommand = currentCommand
-        vc.nextCommand = nextCommand
+        MainCoordinator().push(.RoundResults(correct: true))
         StatisticService().addScoreTo(team: currentCommand!)
-        
-        present(vc, animated: true)
     }
     
     // переход на WrongViewController
@@ -122,16 +114,7 @@ class GameViewController: UIViewController {
         stopSound()
         timer.invalidate()
         audioService.makeSound(sound: .wrongAnswer)
-        
-        let vc = RoundResultsViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        vc.isWinRound = false
-        vc.numberOfRound = numberOfRound
-        vc.currentCommand = currentCommand
-        vc.nextCommand = nextCommand
-        
-        present(vc, animated: true)
-        
+        MainCoordinator().push(.RoundResults(correct: false))
     }
     
     // переход на MainViewController
@@ -146,7 +129,6 @@ class GameViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         let yesAction = UIAlertAction(title: "Да", style: .default) { _ in
             self.navigateToMain()
-            self.timer.invalidate()
         }
         yesAction.setValue(UIColor.red, forKey: "titleTextColor")
         alert.addAction(cancelAction)
@@ -163,6 +145,8 @@ class GameViewController: UIViewController {
     }
     
     func navigateToMain() {
+        self.timer.invalidate()
+        stopSound()
         MainCoordinator.shared.popToRoot()
     }
     
@@ -170,12 +154,6 @@ class GameViewController: UIViewController {
         guard let currentCommand = currentCommand else { return }
         gameView.currentTeamLabel.text = "Ход команды - \(currentCommand.teamName)"
         gameView.currentTeamImageLabel.text = currentCommand.teamImage
-        
-        if numberOfRound + 1 != playingCommands.count {
-            nextCommand = playingCommands[numberOfRound + 1]
-        } else {
-            nextCommand = playingCommands[0]
-        }
     }
     
     func setupGame() {
@@ -191,10 +169,8 @@ class GameViewController: UIViewController {
         if isFirstRound == false {
             if numberOfRound + 1 != playingCommands.count {
                 numberOfRound += 1
-                nextCommand = playingCommands[numberOfRound]
             } else {
                 numberOfRound = 0
-                nextCommand = playingCommands[numberOfRound]
             }
         }
     }

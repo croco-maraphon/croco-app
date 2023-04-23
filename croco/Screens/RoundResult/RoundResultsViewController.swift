@@ -15,12 +15,11 @@ class RoundResultsViewController: UIViewController {
     private let audioService = AudioService.shared
     var currentCommand: Team?
     var nextCommand: Team?
-    var numberOfRound = 0
+    var numberOfRound = GameViewController().numberOfRound
    
-    private var isFirstRound = true
-    
     var isWinRound: Bool?
     var reset: (() -> ())?
+    var nextRound: (() -> ())?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,14 +99,9 @@ class RoundResultsViewController: UIViewController {
     
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
+        MainCoordinator().pop()
+        nextRound?()
         reset?()
-        
-        let vc = GameViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        vc.isFirstRound = false
-        vc.numberOfRound = numberOfRound
-        
-        present(vc, animated: true)
     }
 
     @objc private func switchToGameResultViewController() {
@@ -116,10 +110,7 @@ class RoundResultsViewController: UIViewController {
         statisticService.updateLeaderboard(gameResult: teams)
         audioService.player?.stop()
         
-        let vc = GameResultViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        
-        present(vc, animated: true)
+        MainCoordinator().push(.Results)
     }
 }
     
