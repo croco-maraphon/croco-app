@@ -72,7 +72,7 @@ extension GameResultViewController {
         }
         
         resultView.resultLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
+            make.top.equalToSuperview().inset(50)
             make.centerX.equalToSuperview()
         }
         

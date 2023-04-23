@@ -49,7 +49,7 @@ class GameResultCell: UITableViewCell {
     
     lazy var teamNumberLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 40)
+        label.font = UIFont.systemFont(ofSize: 60)
         
         return label
     }()
@@ -92,8 +92,9 @@ class GameResultCell: UITableViewCell {
         }
 
         teamNumberLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(20)
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(11)
+            make.width.height.equalTo(62)
 
         }
 
