@@ -106,6 +106,8 @@ extension TeamsViewController: UITableViewDataSource {
     }
     
     @objc func deleteTeam(indexPath: IndexPath) {
+        guard indexPath.row < teams.count else { return }
+        TeamAPI.deleteTeam(teams[indexPath.row])
         print("look on index path \(indexPath.row)")
         teams.remove(at: indexPath.row)
         teamsTable.tableView.beginUpdates()
@@ -129,11 +131,7 @@ extension TeamsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            teams.remove(at: indexPath.row)
-            teamsTable.tableView.beginUpdates()
-            teamsTable.tableView.deleteRows(at: [indexPath], with: .automatic)
-            teamsTable.tableView.endUpdates()
-            teamsTable.tableView.reloadData()
+            deleteTeam(indexPath: indexPath)
         }
     }
 
