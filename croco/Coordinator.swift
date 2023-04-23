@@ -22,7 +22,7 @@ enum Screens {
     case Rules
     case Teams
     case Categories
-    case Game
+    case Game(team: Team)
     case Results
     case RoundResults(correct: Bool)
     case LeaderBoard
@@ -37,8 +37,10 @@ enum Screens {
             return TeamsViewController()
         case .Categories:
             return CategoriesViewController()
-        case .Game:
-            return GameViewController()
+        case .Game(let team):
+            let controller = GameViewController()
+            controller.currentCommand = team
+            return controller
         case .Results:
             return GameResultViewController()
         case .RoundResults(let correct):

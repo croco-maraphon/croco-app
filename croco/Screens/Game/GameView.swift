@@ -173,13 +173,14 @@ class GameView: UIView {
         }
         
         wordLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.top.equalTo(currentTeamImageLabel).offset(60)
             make.width.equalTo(247)
             make.height.equalTo(48)
         }
         
         commentLabel.snp.makeConstraints { make in
-            make.top.equalTo(wordLabel.snp.bottom).offset(20)
+            make.top.equalTo(wordLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
             make.width.equalTo(197)
             make.height.equalTo(48)

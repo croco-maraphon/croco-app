@@ -46,7 +46,7 @@ class CategoriesViewController: UIViewController {
 
     @objc func navigateToGame() {
         if presenter.canStartGame() {
-            MainCoordinator.shared.push(.Game)
+            MainCoordinator.shared.push(.Game(team: StatisticService().getTeams()[0]))
         }
     }
 

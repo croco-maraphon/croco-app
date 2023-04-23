@@ -29,13 +29,9 @@ class GameResultViewController: UIViewController {
     }
     
     @objc private func switchToTeamsViewController() {
-       let vc = TeamsViewController()
-        vc.modalPresentationStyle = .overFullScreen
+        MainCoordinator().push(.Teams)
         StatisticService().restoreTeamsScore()
-        
-        
-        present(vc, animated: true)
-    }
+        }
 }
 
 extension GameResultViewController: UITableViewDelegate {
