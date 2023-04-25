@@ -41,6 +41,7 @@
 		7EC9640F29F2A891001FBF97 /* GameResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9640E29F2A891001FBF97 /* GameResultCell.swift */; };
 		7ED2E8A829EE876E008DCF53 /* RoundResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */; };
 		7ED2E8B129EF0BA1008DCF53 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */; };
+		7ED4251F29F7BEE500FE1BE8 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4251E29F7BEE500FE1BE8 /* GameManager.swift */; };
 		E401D20929F1EDD700722FA9 /* StatisticServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401D1F729F1ED3300722FA9 /* StatisticServiceTests.swift */; };
 		E420454329EF18B300697334 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420454229EF18B300697334 /* LeaderBoardViewController.swift */; };
 		E420454729EF1AE800697334 /* LeaderBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E420454629EF1AE800697334 /* LeaderBoardViewController.xib */; };
@@ -99,6 +100,7 @@
 		7ED2E8A729EE876E008DCF53 /* RoundResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsViewController.swift; sourceTree = "<group>"; };
 		7ED2E8A929EE8777008DCF53 /* RoundResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsView.swift; sourceTree = "<group>"; };
 		7ED2E8B029EF0BA1008DCF53 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		7ED4251E29F7BEE500FE1BE8 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		E401D1F529F1ED3300722FA9 /* StatisticServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StatisticServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E401D1F729F1ED3300722FA9 /* StatisticServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticServiceTests.swift; sourceTree = "<group>"; };
 		E420454229EF18B300697334 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				43871FAE29EE576800F57227 /* GameView.swift */,
+				7ED4251E29F7BEE500FE1BE8 /* GameManager.swift */,
 				174113F829ED67FD008C8EF1 /* GameViewController.swift */,
 				174113F929ED67FD008C8EF1 /* GameViewController.xib */,
 				43871FB029EE7D7900F57227 /* UIColor+extension.swift */,
@@ -460,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				174113FA29ED67FD008C8EF1 /* GameViewController.swift in Sources */,
+				7ED4251F29F7BEE500FE1BE8 /* GameManager.swift in Sources */,
 				436570F029F02DDA003E6765 /* TeamAPI.swift in Sources */,
 				174113F629ED6563008C8EF1 /* RulesViewController.swift in Sources */,
 				E4EE192329EED660009D8D75 /* CategoriesFactory.swift in Sources */,
