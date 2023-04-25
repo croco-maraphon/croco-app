@@ -11,14 +11,17 @@ import SnapKit
 
 class GameResultViewController: UIViewController {
     
-    let resultView = GameResultView()
-    var teams = StatisticService().getTeams()
+    private let resultView = GameResultView()
+    private let gameManager = GameManager.shared
+    private let statisticService = StatisticService.shared
+    private var teams: [Team] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resultView.tableView.delegate = self
         resultView.tableView.dataSource = self
+        teams = statisticService.getTeams()
                 
         setViews()
         setConstraints()

@@ -14,30 +14,30 @@ class GameViewController: UIViewController {
     
     private let gameView = GameView()
     private let audioService = AudioService.shared
-    let label = CategoriesPresenter.shared.getWordToPlay()
+    private let gameManager = GameManager.shared
+    private let label = CategoriesPresenter.shared.getWordToPlay()
+    private let statisticService = StatisticService.shared
     
     var timer = Timer()
     var secondRemaining = 60
     
-    var playingCommands: [Team] = StatisticService().getTeams()
-    var currentCommand: Team?
-    var numberOfRound: Int = 0
-    var isFirstRound = true
+    private var teams: [Team] = []
+    private var currentCommand: Team?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated: true)
+        teams = statisticService.getTeams()
         setGameView()
-        startTimer()
         correctButtonPressed()
         wrongButtonPressed()
         mainButtonPressed()
         
-        reset()
-        print(numberOfRound)
-        print(playingCommands)
+        currentCommand = teams[gameManager.getNumberOfRound()]
+        startRound()
     }
+
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -90,10 +90,9 @@ class GameViewController: UIViewController {
         gameView.correctButton.addTarget(self, action: #selector(navigateToCorrect), for: .touchUpInside)
     }
     
-    func reset(numberOfRound: Int = 0) {
+    func startRound() {
         secondRemaining = 60
         startTimer()
-        setupGame()
         setupTeamInfo()
     }
     
@@ -101,7 +100,7 @@ class GameViewController: UIViewController {
         stopSound()
         timer.invalidate()
         audioService.makeSound(sound: .correctAnswer)
-        StatisticService().addScoreTo(team: currentCommand!)
+        statisticService.addScoreTo(team: currentCommand!)
         MainCoordinator.shared.push(.RoundResults(correct: true))
     }
     
@@ -154,25 +153,6 @@ class GameViewController: UIViewController {
         guard let currentCommand = currentCommand else { return }
         gameView.currentTeamLabel.text = "Ход команды - \(currentCommand.teamName)"
         gameView.currentTeamImageLabel.text = currentCommand.teamImage
-    }
-    
-    func setupGame() {
-        if isFirstRound {
-            currentCommand = playingCommands[numberOfRound]
-            isFirstRound = false
-        } else {
-            currentCommand = playingCommands[numberOfRound]
-        }
-    }
-    
-    func nextRound() {
-        if isFirstRound == false {
-            if numberOfRound + 1 != playingCommands.count {
-                numberOfRound += 1
-            } else {
-                numberOfRound = 0
-            }
-        }
     }
 }
 

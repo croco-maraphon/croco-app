@@ -13,34 +13,44 @@ class RoundResultsViewController: UIViewController {
     
     private var roundResultView = RoundResultsView()
     private let audioService = AudioService.shared
-    var currentCommand: Team?
-    var nextCommand: Team?
-    var numberOfRound = GameViewController().numberOfRound
+    private let gameManager = GameManager.shared
+    private let statisticService = StatisticService.shared
+    private var teams: [Team] = []
+    private var currentCommand: Team?
+    private var nextCommand: Team?
+    private var numberOfRound = 0
    
     var isWinRound: Bool?
-    var reset: (() -> ())?
-    var nextRound: (() -> ())?
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberOfRound = gameManager.getNumberOfRound()
+        teams = statisticService.getTeams()
+        currentCommand = teams[numberOfRound]
+        nextCommand = gameManager.getNextTeam()
+        
         setViews()
         setConstraints()
         
         showResult(result: isWinRound)
         checkCurrentScore(nextCommand)
+        gameManager.nextRound()
     }
     
     func showResult(result: Bool?) {
         guard let result = result,
-              let currentCommand = currentCommand else { return }
+              let currentCommand = currentCommand else {
+            print("else in showresult")
+            return }
         
+        print("teamscore - \(currentCommand.teamScore)")
         switch result {
         case true:
             addScore(result: result)
             roundResultView.midImageView.backgroundColor = UIColor(hexString: "74A730")
             roundResultView.topTeamLabel.text = currentCommand.teamName
             roundResultView.topTeamImageLabel.text = currentCommand.teamImage
-            roundResultView.topTeamNumberLabel.text = String(currentCommand.teamScore + 1)
+            roundResultView.topTeamNumberLabel.text = String(currentCommand.teamScore)
             roundResultView.winOrLooseLabel.text = "Поздравляем!"
             roundResultView.getPointOrNotLabel.text = "Вы получаете"
             roundResultView.pointsImage.image = UIImage(named: "Vector")
@@ -79,7 +89,7 @@ class RoundResultsViewController: UIViewController {
     private func checkCurrentScore(_ nextTeam: Team?) {
         guard let nextTeam = nextTeam,
               let currentCommand = currentCommand else { return }
-        if currentCommand.teamScore == 4 {
+        if currentCommand.teamScore == 5 {
             roundResultView.getPointOrNotLabel.text = "Вы выйграли!"
             roundResultView.getPointOrNotLabel.font = UIFont.boldSystemFont(ofSize: 16)
             roundResultView.topScoreLabel.text = ""
@@ -89,19 +99,16 @@ class RoundResultsViewController: UIViewController {
             roundResultView.nextTurnButton.addTarget(self, action: #selector(switchToGameResultViewController),
                                                      for: .touchUpInside)
         } else {
+            print("елсе блок в чеккурент")
             roundResultView.nextTurnLabel.text = "Следующий ход - \(nextTeam.teamName)"
             roundResultView.nextTurnButton.setTitle("Передать ход", for: .normal)
             roundResultView.nextTurnButton.addTarget(self, action: #selector(swithToGameViewController), for: .touchUpInside)
         }
     }
     
-    
-    
     @objc private func swithToGameViewController() {
         audioService.player?.stop()
-        MainCoordinator().pop()
-        nextRound?()
-        reset?()
+        navigationController?.pushViewController(GameViewController(), animated: true)
     }
 
     @objc private func switchToGameResultViewController() {
@@ -110,7 +117,7 @@ class RoundResultsViewController: UIViewController {
         statisticService.updateLeaderboard(gameResult: teams)
         audioService.player?.stop()
         
-        MainCoordinator().push(.Results)
+        navigationController?.pushViewController(GameResultViewController(), animated: true)
     }
 }
     
@@ -161,7 +168,7 @@ extension RoundResultsViewController {
         roundResultView.topTeamNumberLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(11)
-            make.width.height.equalTo(62)
+            make.width.height.equalTo(70)
         }
         
         roundResultView.topTeamScoreLabel.snp.makeConstraints { make in
